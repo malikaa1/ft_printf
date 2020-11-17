@@ -17,6 +17,8 @@ void parse_specifier(int *i, char *str, format_parser *parser)
 
 void output_int_flag(int nb, int width, int length, char flag)
 {
+    if (width < length)
+        return;
     char output_char;
     if (flag == '-' || flag == ' ')
         output_char = ' ';
@@ -39,11 +41,22 @@ void output_int_flag(int nb, int width, int length, char flag)
 void output_d_specifier(va_list *parms_arry, format_parser *parser)
 {
     int d = 0;
-    int length;
-    d = va_arg(*parms_arry, int);
-    length = ft_strlen(ft_itoa(d, "0123456789"));
-    if (parser->width > length)
-        output_int_flag(d, parser->width, length, parser->flag);
+    int length = 0;
+    int width = 0;
+    if (parser->width > 0)
+    {
+        d = va_arg(*parms_arry, int);
+        length = ft_strlen(ft_itoa(d, "0123456789"));
+        width = parser->width;
+    }
+    else if (parser->is_dynamic_wdith == 1)
+    {
+        width = va_arg(*parms_arry, int);
+        d = va_arg(*parms_arry, int);
+        length = ft_strlen(ft_itoa(d, "0123456789"));
+    }
+
+    output_int_flag(d, width, length, parser->flag);
 }
 
 void output(va_list *parms_arry, format_parser *parser)
@@ -79,6 +92,7 @@ void parse_width(int *i, char *str, format_parser *parser)
     if (str[j] == '*')
     {
         parser->is_dynamic_wdith = 1;
+        *i = *i + 1;
         return;
     }
     while (ft_isdigit(str[j]))
@@ -210,6 +224,9 @@ int main()
     // ft_printf("abc %s %.2d %u %-10d \n", str, k, l, c, s);
     ft_printf("abc %7d t\n", 1000);
     printf("abc %7d t\n", 1000);
+
+    ft_printf("abc %*d t\n", 7, 1000);
+    printf("abc %*d t\n", 7, 1000);
     //printf("abc %s %d %u %c %x\n", str, k, l, c, s);
 
     // printf("%10d !\n", 100);  // =>        100 !
