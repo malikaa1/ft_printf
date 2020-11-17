@@ -38,5 +38,9 @@ int main()
         printf("tab de %d \n", buff[count - 1]);
         count--;
     }
+
+
+    float nb = 3.1234567;
+    printf("%.3f lol", nb);
     return 0;
 }
