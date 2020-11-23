@@ -36,9 +36,13 @@ void ft_putstr(char *s)
 
 void ft_putnbr(int nb)
 {
+	int i;
+ 
+	i = 1;
 	if (nb < 0)
 	{
 		nb = -nb;
+		i = i * -1;
 	}
 	if (nb >= 10)
 	{

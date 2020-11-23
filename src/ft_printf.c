@@ -1,70 +1,5 @@
 #include "ft_printf.h"
 
-void parse_specifier(int *i, char *str, format_parser *parser)
-{
-    parser->specifier = str[*i];
-    // if (parser->specifier == 'c')
-    //     return (ft_putchar(va_arg(*parms_arry, int)));
-    // if (parser->specifier == 's')
-    //     return (ft_putstr(va_arg(*parms_arry, char *)));
-    // if (parser->specifier == 'd' || parser->specifier == 'i')
-    //     return (ft_putnbr(va_arg(*parms_arry, int)));
-    // if (parser->specifier == 'u')
-    //     return (ft_putnbr(va_arg(*parms_arry, unsigned int)));
-    // if (parser->specifier == 'x')
-    //     return (ft_putnbr_base(va_arg(*parms_arry, unsigned int), "0123456789abcdef"));
-}
-
-void output_int_flag(int nb, int width, int length, char flag)
-{
-    if (width < length)
-        return;
-    char output_char;
-    if (flag == '-' || flag == ' ')
-        output_char = ' ';
-    if (flag == '0')
-        output_char = '0';
-
-    int j;
-    j = width - length;
-    if (flag == '-')
-        ft_putnbr(nb);
-    while (j > 0)
-    {
-        ft_putchar(output_char);
-        j--;
-    }
-    if (flag == '0' || flag == ' ')
-        ft_putnbr(nb);
-}
-
-void output_d_specifier(va_list *parms_arry, format_parser *parser)
-{
-    int d = 0;
-    int length = 0;
-    int width = 0;
-    if (parser->width > 0)
-    {
-        d = va_arg(*parms_arry, int);
-        length = ft_strlen(ft_itoa(d, "0123456789"));
-        width = parser->width;
-    }
-    else if (parser->is_dynamic_wdith == 1)
-    {
-        width = va_arg(*parms_arry, int);
-        d = va_arg(*parms_arry, int);
-        length = ft_strlen(ft_itoa(d, "0123456789"));
-    }
-
-    output_int_flag(d, width, length, parser->flag);
-}
-
-void output(va_list *parms_arry, format_parser *parser)
-{
-    if (parser->specifier == 'd')
-        output_d_specifier(parms_arry, parser);
-}
-
 void parse_flags(int *i, char *str, format_parser *parser)
 {
     if (str[*i] == '-')
@@ -86,8 +21,10 @@ void parse_flags(int *i, char *str, format_parser *parser)
 void parse_width(int *i, char *str, format_parser *parser)
 {
     int count;
-    count = 0;
     int j;
+    char *width;
+
+    count = 0;
     j = *i;
     if (str[j] == '*')
     {
@@ -101,7 +38,7 @@ void parse_width(int *i, char *str, format_parser *parser)
         count++;
     }
     j = 0;
-    char *width = malloc(count * sizeof(char) + 1);
+    width = malloc(count * sizeof(char) + 1);
     while (j < count)
     {
         width[j] = str[*i];
@@ -115,11 +52,13 @@ void parse_width(int *i, char *str, format_parser *parser)
 
 void parse_precision(int *i, char *str, format_parser *parser)
 {
+    int j;
+    int k;
+
     if (str[*i] != '.')
         return;
     *i = *i + 1;
-    int j = *i;
-    int k;
+    j = *i;
     k = 0;
     parser->precision = malloc(2 * sizeof(char));
     if (str[*i] == '*')
@@ -142,6 +81,27 @@ void parse_precision(int *i, char *str, format_parser *parser)
     }
 }
 
+void parse_specifier(int *i, char *str, format_parser *parser)
+{
+    parser->specifier = str[*i];
+}
+void output(va_list *parms_arry, format_parser *parser)
+{
+    if (parser->specifier == 'd' || parser->specifier == 'i')
+        output_d_specifier(parms_arry, parser);
+    if (parser->specifier == 's')
+        output_s_specifier(parms_arry, parser);
+    if (parser->specifier == 'c')
+        output_c_specifier(parms_arry, parser);
+    if (parser->specifier == 'u')
+        output_u_specifier(parms_arry, parser);
+    if (parser->specifier == 'x')
+        output_x_specifier(parms_arry, parser);
+    if (parser->specifier == 'X')
+        output_X_specifier(parms_arry, parser);
+    if (parser->specifier == 'p')
+        output_p_specifier(parms_arry, parser);
+}
 int ft_printf(char *args, ...)
 {
     int i = 0;
@@ -171,67 +131,19 @@ int ft_printf(char *args, ...)
 
 // %[flags][width][.precision][length]specifier
 
-// int is_identifiers(char s)
-// {
-//         if (s != 's' || s != 'x' || s != 'd' || s != 'X' || s != 'p')
-//             return (1);
-//     return 0;
-// }
-// char *flags(char *str)
-// {
-//     int i = 0;
-//     int z = 0;
-//     int count = 1;
-//     char *ptr;
-
-//     while (str[i] != '\0')
-//     {
-//         if (str[i] == '%')
-//         {
-//             while (str[i + count] != 's')
-//             {
-//                 if (str[i + count] == '-' || str[i + count] == '0' || str[i + count] == '*' || str[i + count] == '.')
-//                 {
-//                     ptr[z] = str[i + count];
-//                     z++;
-//                 }
-//                 count++;
-//             }
-//             return ptr;
-//         }
-//         i++;
-//     }
-//     return NULL;
-// }
-
 int main()
 {
-    //char *str = "salut";
-    // int k = 20;
-    // unsigned int l = 2020;
-    // char c = 'c';
-    // unsigned int s = 123;
+    char *s = "lol";
+  //  printf("pointeronly %p\n", s);
+    ft_printf("pointeronly %p\n", s);
 
-    // printf("=== mon printf====\n");
-    // ft_printf("==> %s %d %u %c %x\n", str, k, l, c, s);
-    // printf("=== printf====\n");
-    // printf("==> %s %d %u %c %x\n", str, k, l, c, s);
+   // printf("pointeronly %x\n", s);
+    ft_printf("pointeronly %x\n", s);
+    ft_printf("pointeronly %X\n", s);
+    ft_printf("pointeronly %s\n", s);
+    ft_printf("pointeronly %d\n", 10);
+    ft_printf("pointeronly %i\n", 20);
+    ft_printf("pointeronly %u\n",100);
 
-    // float nb = 3.1234567;
-    // printf("%-*flol %-*flol", 100, nb, 100, nb);
-    // printf("%.12f lol", nb);
-
-    // ft_printf("abc %s %.2d %u %-10d \n", str, k, l, c, s);
-    ft_printf("abc %7d t\n", 1000);
-    printf("abc %7d t\n", 1000);
-
-    ft_printf("abc %*d t\n", 7, 1000);
-    printf("abc %*d t\n", 7, 1000);
-    //printf("abc %s %d %u %c %x\n", str, k, l, c, s);
-
-    // printf("%10d !\n", 100);  // =>        100 !
-    // printf("%-10d !\n", 100); // =>100        !
-    // printf("%010d !\n", 100); //=> 0000000100 !
-    // printf("%-d!", 100);      //=> 0000000100 !
     return 0;
 }
