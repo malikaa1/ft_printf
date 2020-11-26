@@ -37,7 +37,7 @@ void ft_putstr(char *s)
 void ft_putnbr(int nb)
 {
 	int i;
- 
+
 	i = 1;
 	if (nb < 0)
 	{
@@ -99,9 +99,9 @@ int ft_atoi(const char *str)
 		return (sign * result);
 	return (sign == 1 ? -1 : 0);
 }
-int		check_base(char *base)
+int check_base(char *base)
 {
-	int	i;
+	int i;
 	int j;
 
 	i = 0;
@@ -122,11 +122,11 @@ int		check_base(char *base)
 	}
 	return (1);
 }
-char	*ft_itoa(long long nbr, char *base)
+char *ft_itoa(long long nbr, char *base)
 {
-	char	*str;
-	int		length;
-	int		tmp;
+	char *str;
+	int length;
+	int tmp;
 
 	length = ft_count(nbr, base);
 	tmp = length;
@@ -215,4 +215,27 @@ void ft_putnbr_base(int nbr, char *base)
 		ft_putnbr_base((nbr / count_base), base);
 	}
 	ft_putchar(base[(nbr % count_base)]);
+}
+char *ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t i;
+	size_t j;
+	char *str;
+
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
+		i++;
+	}
+	str[j] = 0;
+	return (str);
 }

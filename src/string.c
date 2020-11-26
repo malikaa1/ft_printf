@@ -1,29 +1,67 @@
 #include "ft_printf.h"
-void output_char_flag(char *str, int width, int lenght, char flag)
-{
-    int i;
 
-    i = width - lenght;
-    if (flag == '-')
-        ft_putstr(str);
-    while (i > 0)
+// %[flags][width][.precision][length]specifier
+
+void write_str(char *str, int size)
+{
+    int i = 0;
+    while (str[i] != '\0' && i < size)
     {
-        ft_putchar(' ');
-        i--;
+        ft_putchar(str[i]);
+        i++;
     }
-    if (flag == ' ')
-        ft_putstr(str);
+}
+void write_char(char c, int width, int lenght, int precision)
+{
+    int size;
+
+    if (lenght > precision)
+        size = width - precision;
+    else
+        size = width - lenght;
+    while (size > 0)
+    {
+        ft_putchar(c);
+        size--;
+    }
+}
+
+void output_s_flags(format_parser *parser, char *str, int precision, int width)
+{
+    if (parser->flag == '-')
+    {
+        write_str(str, precision);
+        write_char(' ', width, ft_strlen(str), precision);
+    }
+    else if (parser->flag == '0')
+    {
+        write_char('0', width, ft_strlen(str), precision);
+        write_str(str, precision);
+    }
+    else if (parser->flag == ' ')
+    {
+        write_char(' ', width, ft_strlen(str), precision);
+        write_str(str, precision);
+    }
 }
 
 void output_s_specifier(va_list *parms_arry, format_parser *parser)
 {
     char *arg;
-    int length;
+    int precision;
+    int width;
+
+    width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
+    precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
 
     arg = va_arg(*parms_arry, char *);
-    length = ft_strlen(arg);
-    output_char_flag(arg, parser->width, length, parser->flag);
+
+    if (precision > ft_strlen(arg) || precision <= 0)
+        precision = ft_strlen(arg);
+
+    output_s_flags(parser, arg, precision, width);
 }
+
 void output_x_specifier(va_list *parms_arry, format_parser *parser)
 {
     int int_x;
@@ -66,3 +104,23 @@ void output_X_specifier(va_list *parms_arry, format_parser *parser)
     lenght = ft_strlen(str);
     output_char_flag(str, width, lenght, parser->flag);
 }
+
+// void output_s_specifier(va_list *parms_arry, format_parser *parser)
+// {
+//     char *arg;
+//     int length;
+
+//     if (parser->is_dynamic_precision == 0)
+//     {
+//         arg = va_arg(*parms_arry, char *);
+//         length = ft_strlen(arg);
+//     }
+//     else if (parser->is_dynamic_precision == 1)
+//     {
+//         length = va_arg(*parms_arry, int);
+//         arg = va_arg(*parms_arry, char *);
+//     }
+
+//     output_precision(arg, length, parser->precision);
+//     output_char_flag(arg, parser->width, length, parser->flag);
+// }

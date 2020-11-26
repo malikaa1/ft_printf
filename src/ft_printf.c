@@ -26,6 +26,8 @@ void parse_width(int *i, char *str, format_parser *parser)
 
     count = 0;
     j = *i;
+    if (str[*i - 1] == '.') //todo
+        return;
     if (str[j] == '*')
     {
         parser->is_dynamic_wdith = 1;
@@ -50,35 +52,33 @@ void parse_width(int *i, char *str, format_parser *parser)
     free(width);
 }
 
-void parse_precision(int *i, char *str, format_parser *parser)
+void parse_precision(int *i, char *str, format_parser *parser, va_list *parms_arry)
 {
     int j;
-    int k;
+    char *result;
+    int count;
 
+    count = 0;
     if (str[*i] != '.')
         return;
     *i = *i + 1;
-    j = *i;
-    k = 0;
-    parser->precision = malloc(2 * sizeof(char));
     if (str[*i] == '*')
     {
-        parser->precision[0] = '*';
-        parser->precision[1] = '\0';
+        parser->is_dynamic_precision = 1;
+        *i = *i + 1;
     }
-    else
+
+    else if (ft_isdigit(str[*i]) == 1)
     {
-        while (ft_isdigit(str[j]))
-            j++;
-        parser->precision = malloc((j - *i) + 1 * sizeof(char));
-        while (ft_isdigit(str[*i]) == 1)
+        while (ft_isdigit(str[*i]))
         {
-            parser->precision[k] = str[*i];
             *i = *i + 1;
-            k++;
+            count++;
         }
-        parser->precision[k] = '\0';
+        result = ft_substr(str, *i - count, count);
+        parser->precision = ft_atoi(result);
     }
+    //*i = *i + count;
 }
 
 void parse_specifier(int *i, char *str, format_parser *parser)
@@ -113,11 +113,12 @@ int ft_printf(char *args, ...)
     {
         if (args[i] == '%')
         {
-            parser.flag = ' ', parser.precision = "", parser.specifier = ' ', parser.width = 0, parser.is_dynamic_wdith = 0;
+            parser.flag = ' ', parser.precision = 0, parser.specifier = ' ', parser.width = 0, parser.is_dynamic_precision = 0,
+            parser.is_dynamic_wdith = 0;
             i++;
             parse_flags(&i, args, &parser);
             parse_width(&i, args, &parser);
-            parse_precision(&i, args, &parser);
+            parse_precision(&i, args, &parser, &parms_arry);
             parse_specifier(&i, args, &parser);
             output(&parms_arry, &parser);
         }
@@ -133,17 +134,23 @@ int ft_printf(char *args, ...)
 
 int main()
 {
-    char *s = "lol";
-  //  printf("pointeronly %p\n", s);
-    ft_printf("pointeronly %p\n", s);
+    // printf("%s o\n", "salut");
+    // ft_printf("%s o\n", "salut");
 
-   // printf("pointeronly %x\n", s);
-    ft_printf("pointeronly %x\n", s);
-    ft_printf("pointeronly %X\n", s);
-    ft_printf("pointeronly %s\n", s);
-    ft_printf("pointeronly %d\n", 10);
-    ft_printf("pointeronly %i\n", 20);
-    ft_printf("pointeronly %u\n",100);
+    // printf("%-10.6so\n", "salut");
+    // ft_printf("%-10.6so\n", "salut");
+
+    // printf("%10.3so\n", "salut");
+    // ft_printf("%10.3so\n", "salut");
+
+    // printf("%010.3so\n", "salut");
+    // ft_printf("%010.3so\n", "salut");
+
+    // printf("%.3so\n", "salut");
+    // ft_printf("%.3so\n", "salut");
+
+    printf("%*.*so\n", 10, 3, "salut");
+    ft_printf("%*.*so\n", 10, 3, "salut");
 
     return 0;
 }
