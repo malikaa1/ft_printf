@@ -61,66 +61,34 @@ void output_s_specifier(va_list *parms_arry, format_parser *parser)
 
     output_s_flags(parser, arg, precision, width);
 }
-
 void output_x_specifier(va_list *parms_arry, format_parser *parser)
 {
-    int int_x;
-    int lenght;
+    char *arg_x;
+    int precision;
     int width;
-    char *str;
+    unsigned int int_hexa_upp;
 
-    if (parser->is_dynamic_wdith == 0)
-    {
-        width = parser->width;
-        int_x = va_arg(*parms_arry, unsigned int);
-    }
-    else if (parser->is_dynamic_wdith == 1)
-    {
-        width = va_arg(*parms_arry, unsigned int);
-        int_x = va_arg(*parms_arry, unsigned int);
-    }
-    str = ft_itoa(int_x, "0123456789abcdef");
-    lenght = ft_strlen(str);
-    output_char_flag(str, width, lenght, parser->flag);
+    width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, unsigned int) : parser->width;
+    precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, unsigned int) : parser->precision;
+    int_hexa_upp = va_arg(*parms_arry, unsigned int);
+    arg_x = ft_itoa(int_hexa_upp, "0123456789abcdef");
+    if (precision > ft_strlen(arg_x) || precision <= 0)
+        precision = ft_strlen(arg_x);
+    output_s_flags(parser, arg_x, precision, width);
 }
+
 void output_X_specifier(va_list *parms_arry, format_parser *parser)
 {
-    int int_X;
-    int lenght;
+    char *arg_x;
+    int precision;
     int width;
-    char *str;
+    unsigned int int_hexa;
 
-    if (parser->is_dynamic_wdith == 0)
-    {
-        width = parser->width;
-        int_X = va_arg(*parms_arry, unsigned int);
-    }
-    else if (parser->is_dynamic_wdith == 1)
-    {
-        width = va_arg(*parms_arry, unsigned int);
-        int_X = va_arg(*parms_arry, unsigned int);
-    }
-    str = ft_itoa(int_X, "0123456789ABCDEF");
-    lenght = ft_strlen(str);
-    output_char_flag(str, width, lenght, parser->flag);
+    width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, unsigned int) : parser->width;
+    precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, unsigned int) : parser->precision;
+    int_hexa = va_arg(*parms_arry, unsigned int);
+    arg_x = ft_itoa(int_hexa, "0123456789ABCDEF");
+    if (precision > ft_strlen(arg_x) || precision <= 0)
+        precision = ft_strlen(arg_x);
+    output_s_flags(parser, arg_x, precision, width);
 }
-
-// void output_s_specifier(va_list *parms_arry, format_parser *parser)
-// {
-//     char *arg;
-//     int length;
-
-//     if (parser->is_dynamic_precision == 0)
-//     {
-//         arg = va_arg(*parms_arry, char *);
-//         length = ft_strlen(arg);
-//     }
-//     else if (parser->is_dynamic_precision == 1)
-//     {
-//         length = va_arg(*parms_arry, int);
-//         arg = va_arg(*parms_arry, char *);
-//     }
-
-//     output_precision(arg, length, parser->precision);
-//     output_char_flag(arg, parser->width, length, parser->flag);
-// }

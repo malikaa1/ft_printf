@@ -41,7 +41,7 @@ void output_s_precision(va_list *parms_arry, format_parser *parser);
 void output_d_precision(va_list *parms_arry, format_parser *parser);
 
 void output_int_flag(int nb, int width, int length, char flag);
-void output_char_flag(char *str, int width, int lenght, char flag);
+//void output_char_flag(char *str, int width, int lenght, char flag);
 
 void output_c_specifier(va_list *parms_arry, format_parser *parser);
 void output_u_specifier(va_list *parms_arry, format_parser *parser);

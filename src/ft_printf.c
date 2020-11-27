@@ -134,23 +134,34 @@ int ft_printf(char *args, ...)
 
 int main()
 {
-    // printf("%s o\n", "salut");
-    // ft_printf("%s o\n", "salut");
+    printf("==> %x\n", 1000);
+    ft_printf("==> %x\n", 1000);
 
-    // printf("%-10.6so\n", "salut");
-    // ft_printf("%-10.6so\n", "salut");
+    printf("==> %-10x\n",  1000);
+    ft_printf("==> %-10x\n",  1000);
 
-    // printf("%10.3so\n", "salut");
-    // ft_printf("%10.3so\n", "salut");
+    printf("==> %10x\n",  1000);
+    ft_printf("==> %10x\n",  1000);
 
-    // printf("%010.3so\n", "salut");
-    // ft_printf("%010.3so\n", "salut");
+    printf("==> %010x\n",  1000);
+    ft_printf("==> %010x\n",  1000);
 
-    // printf("%.3so\n", "salut");
-    // ft_printf("%.3so\n", "salut");
+    printf("==> %*x\n", 10, 1000);
+    ft_printf("==> %*x\n", 10, 1000);
 
-    printf("%*.*so\n", 10, 3, "salut");
-    ft_printf("%*.*so\n", 10, 3, "salut");
+    printf("==> %-*x\n", 10, 1000);
+    ft_printf("==> %-*x\n", 10, 1000);
+
+    printf("==> %0*x\n", 10, 1000);
+    ft_printf("==> %0*x\n", 10, 1000);
+
+    printf("==> %*x\n", 10, -1000);
+    ft_printf("==> %*x\n", 10, -1000);
+
+
+
+
+
 
     return 0;
 }
