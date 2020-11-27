@@ -52,9 +52,8 @@ void parse_width(int *i, char *str, format_parser *parser)
     free(width);
 }
 
-void parse_precision(int *i, char *str, format_parser *parser, va_list *parms_arry)
+void parse_precision(int *i, char *str, format_parser *parser)
 {
-    int j;
     char *result;
     int count;
 
@@ -118,7 +117,7 @@ int ft_printf(char *args, ...)
             i++;
             parse_flags(&i, args, &parser);
             parse_width(&i, args, &parser);
-            parse_precision(&i, args, &parser, &parms_arry);
+            parse_precision(&i, args, &parser);
             parse_specifier(&i, args, &parser);
             output(&parms_arry, &parser);
         }
@@ -157,6 +156,30 @@ int main()
 
     printf("==> %*x\n", 10, -1000);
     ft_printf("==> %*x\n", 10, -1000);
+
+    printf("==> %X\n", 1000);
+    ft_printf("==> %X\n", 1000);
+
+    printf("==> %-10X\n",  1000);
+    ft_printf("==> %-10X\n",  1000);
+
+    printf("==> %10X\n",  1000);
+    ft_printf("==> %10X\n",  1000);
+
+    printf("==> %010X\n",  1000);
+    ft_printf("==> %010X\n",  1000);
+
+    printf("==> %*X\n", 10, 1000);
+    ft_printf("==> %*X\n", 10, 1000);
+
+    printf("==> %-*X\n", 10, 1000);
+    ft_printf("==> %-*X\n", 10, 1000);
+
+    printf("==> %0*X\n", 10, 1000);
+    ft_printf("==> %0*X\n", 10, 1000);
+
+    printf("==> %*X\n", 10, -1000);
+    ft_printf("==> %*X\n", 10, -1000);
 
 
 

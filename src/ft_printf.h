@@ -35,7 +35,7 @@ int ft_printf(char *args, ...);
 void parse_flags(int *i, char *str, format_parser *parser);
 void parse_width(int *i, char *str, format_parser *parser);
 //void parse_precision(int *i, char *str, format_parser *parser);
-void parse_precision(int *i, char *str, format_parser *parser, va_list *parms_arry);
+void parse_precision(int *i, char *str, format_parser *parser);
 void parse_specifier(int *i, char *str, format_parser *parser);
 void output_s_precision(va_list *parms_arry, format_parser *parser);
 void output_d_precision(va_list *parms_arry, format_parser *parser);
