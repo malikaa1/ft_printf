@@ -26,8 +26,8 @@ void parse_width(int *i, char *str, format_parser *parser)
 
     count = 0;
     j = *i;
-    if (str[*i - 1] == '.') //todo
-        return;
+    // if (str[*i - 1] == '.') //todo
+    //     return;
     if (str[j] == '*')
     {
         parser->is_dynamic_wdith = 1;
@@ -77,13 +77,13 @@ void parse_precision(int *i, char *str, format_parser *parser)
         result = ft_substr(str, *i - count, count);
         parser->precision = ft_atoi(result);
     }
-    //*i = *i + count;
 }
 
 void parse_specifier(int *i, char *str, format_parser *parser)
 {
     parser->specifier = str[*i];
 }
+
 void output(va_list *parms_arry, format_parser *parser)
 {
     if (parser->specifier == 'd' || parser->specifier == 'i')
@@ -101,6 +101,7 @@ void output(va_list *parms_arry, format_parser *parser)
     if (parser->specifier == 'p')
         output_p_specifier(parms_arry, parser);
 }
+
 int ft_printf(char *args, ...)
 {
     int i = 0;
@@ -133,58 +134,30 @@ int ft_printf(char *args, ...)
 
 int main()
 {
-    printf("==> %x\n", 1000);
-    ft_printf("==> %x\n", 1000);
+    // int i = 3;
+    // unsigned int u = 2200;
+    // int x = 2200000;
+    // int X = 2200000;
+    // char c = 'a';
+    // char *s = "lol";
 
-    printf("==> %-10x\n",  1000);
-    ft_printf("==> %-10x\n",  1000);
+    // printf("%i %u %x %X %c %s %p\n", i, u, x, X, c, s, s);
+    // ft_printf("%i %u %x %X %c %s %p", i, u, x, X, c, s, s);
 
-    printf("==> %10x\n",  1000);
-    ft_printf("==> %10x\n",  1000);
+    printf("%6.4d!\n", -12);
+    ft_printf("%6.4d!\n", -12);
 
-    printf("==> %010x\n",  1000);
-    ft_printf("==> %010x\n",  1000);
+    printf("%-6.4d!\n", -12);
+    ft_printf("%-6.4d!\n", -12);
 
-    printf("==> %*x\n", 10, 1000);
-    ft_printf("==> %*x\n", 10, 1000);
+    printf("%*.4d!\n", 10, -12);
+    ft_printf("%*.4d!\n", 10, -12);
 
-    printf("==> %-*x\n", 10, 1000);
-    ft_printf("==> %-*x\n", 10, 1000);
+    printf("%*.*d!\n", 6, 4, -12);
+    ft_printf("%*.*d!\n", 6, 4, -12);
 
-    printf("==> %0*x\n", 10, 1000);
-    ft_printf("==> %0*x\n", 10, 1000);
-
-    printf("==> %*x\n", 10, -1000);
-    ft_printf("==> %*x\n", 10, -1000);
-
-    printf("==> %X\n", 1000);
-    ft_printf("==> %X\n", 1000);
-
-    printf("==> %-10X\n",  1000);
-    ft_printf("==> %-10X\n",  1000);
-
-    printf("==> %10X\n",  1000);
-    ft_printf("==> %10X\n",  1000);
-
-    printf("==> %010X\n",  1000);
-    ft_printf("==> %010X\n",  1000);
-
-    printf("==> %*X\n", 10, 1000);
-    ft_printf("==> %*X\n", 10, 1000);
-
-    printf("==> %-*X\n", 10, 1000);
-    ft_printf("==> %-*X\n", 10, 1000);
-
-    printf("==> %0*X\n", 10, 1000);
-    ft_printf("==> %0*X\n", 10, 1000);
-
-    printf("==> %*X\n", 10, -1000);
-    ft_printf("==> %*X\n", 10, -1000);
-
-
-
-
-
+    // printf("%-6.4d!\n", 12);
+    // ft_printf("%-6.4d!\n", 12);
 
     return 0;
 }

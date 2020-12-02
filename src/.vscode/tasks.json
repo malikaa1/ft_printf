@@ -19,8 +19,8 @@
                 "D:\\projets\\42\\ft_printf\\src\\integer.c",
                 "-g",
                 "D:\\projets\\42\\ft_printf\\src\\un_int_hexa.c",
-                "-g",
-                "D:\\projets\\42\\ft_printf\\src\\precision.c",
+                // "-g",
+                // "D:\\projets\\42\\ft_printf\\src\\precision.c",
                 "-o",
                 "D:\\projets\\42\\ft_printf\\src\\a.exe"
             ],
