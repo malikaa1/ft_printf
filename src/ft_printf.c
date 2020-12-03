@@ -132,32 +132,32 @@ int ft_printf(char *args, ...)
 
 // %[flags][width][.precision][length]specifier
 
-int main()
-{
-    // int i = 3;
-    // unsigned int u = 2200;
-    // int x = 2200000;
-    // int X = 2200000;
-    // char c = 'a';
-    // char *s = "lol";
+// int main()
+// {
+//     // int i = 3;
+//     // unsigned int u = 2200;
+//     // int x = 2200000;
+//     // int X = 2200000;
+//     // char c = 'a';
+//     // char *s = "lol";
 
-    // printf("%i %u %x %X %c %s %p\n", i, u, x, X, c, s, s);
-    // ft_printf("%i %u %x %X %c %s %p", i, u, x, X, c, s, s);
+//     // printf("%i %u %x %X %c %s %p\n", i, u, x, X, c, s, s);
+//     // ft_printf("%i %u %x %X %c %s %p", i, u, x, X, c, s, s);
 
-    printf("%6.4d!\n", -12);
-    ft_printf("%6.4d!\n", -12);
+//     printf("%6.4d!\n", -12);
+//     ft_printf("%6.4d!\n", -12);
 
-    printf("%-6.4d!\n", -12);
-    ft_printf("%-6.4d!\n", -12);
+//     printf("%-6.4d!\n", -12);
+//     ft_printf("%-6.4d!\n", -12);
 
-    printf("%*.4d!\n", 10, -12);
-    ft_printf("%*.4d!\n", 10, -12);
+//     printf("%*.4d!\n", 10, -12);
+//     ft_printf("%*.4d!\n", 10, -12);
 
-    printf("%*.*d!\n", 6, 4, -12);
-    ft_printf("%*.*d!\n", 6, 4, -12);
+//     printf("%*.*d!\n", 6, 4, -12);
+//     ft_printf("%*.*d!\n", 6, 4, -12);
 
-    // printf("%-6.4d!\n", 12);
-    // ft_printf("%-6.4d!\n", 12);
+//     // printf("%-6.4d!\n", 12);
+//     // ft_printf("%-6.4d!\n", 12);
 
-    return 0;
-}
+//     return 0;
+// }
