@@ -82,6 +82,7 @@ void parse_precision(int *i, char *str, format_parser *parser)
 void parse_specifier(int *i, char *str, format_parser *parser)
 {
     parser->specifier = str[*i];
+
 }
 
 void output(va_list *parms_arry, format_parser *parser)
@@ -100,6 +101,7 @@ void output(va_list *parms_arry, format_parser *parser)
         output_X_specifier(parms_arry, parser);
     if (parser->specifier == 'p')
         output_p_specifier(parms_arry, parser);
+    
 }
 
 int ft_printf(char *args, ...)
@@ -113,6 +115,7 @@ int ft_printf(char *args, ...)
     {
         if (args[i] == '%')
         {
+
             parser.flag = ' ', parser.precision = 0, parser.specifier = ' ', parser.width = 0, parser.is_dynamic_precision = 0,
             parser.is_dynamic_wdith = 0;
             i++;
@@ -132,32 +135,12 @@ int ft_printf(char *args, ...)
 
 // %[flags][width][.precision][length]specifier
 
-// int main()
-// {
-//     // int i = 3;
-//     // unsigned int u = 2200;
-//     // int x = 2200000;
-//     // int X = 2200000;
-//     // char c = 'a';
-//     // char *s = "lol";
+int main()
+{
+   printf("%a%");
+   printf("%-6%");
+   //printf("%06%");
+   //printf("%%");
 
-//     // printf("%i %u %x %X %c %s %p\n", i, u, x, X, c, s, s);
-//     // ft_printf("%i %u %x %X %c %s %p", i, u, x, X, c, s, s);
-
-//     printf("%6.4d!\n", -12);
-//     ft_printf("%6.4d!\n", -12);
-
-//     printf("%-6.4d!\n", -12);
-//     ft_printf("%-6.4d!\n", -12);
-
-//     printf("%*.4d!\n", 10, -12);
-//     ft_printf("%*.4d!\n", 10, -12);
-
-//     printf("%*.*d!\n", 6, 4, -12);
-//     ft_printf("%*.*d!\n", 6, 4, -12);
-
-//     // printf("%-6.4d!\n", 12);
-//     // ft_printf("%-6.4d!\n", 12);
-
-//     return 0;
-// }
+    return 0;
+}

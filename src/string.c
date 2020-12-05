@@ -11,7 +11,7 @@ void write_str(char *str, int size)
 }
 void write_flags(char c, int width, int length, int precision)
 {
-    if (width <= length)
+    if (width <= (length - precision))
         return;
     int size;
 
