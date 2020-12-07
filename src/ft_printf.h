@@ -15,8 +15,11 @@ typedef struct format_parser
     int precision;
     int is_dynamic_precision;
     int is_dynamic_wdith;
+    int errors_count;
 
 } format_parser;
+
+#define INIT_PARSER(P) format_parser P = {.errors_count = 0, .flag = ' ', .precision = 0, .specifier = ' ', .width = 0, .is_dynamic_precision = 0, .is_dynamic_wdith = 0};
 
 void parse_flags(int *i, char *str, format_parser *parser);
 void parse_width(int *i, char *str, format_parser *parser);
@@ -53,5 +56,9 @@ char *ft_itoa(long long nbr, char *base);
 char *ft_substr(char const *s, unsigned int start, size_t len);
 unsigned long long ft_iterative_power(int nb, int poweer);
 int ft_atoi(const char *str);
+int		ft_isalpha(int c);
+int		ft_islower(int c);
+int		ft_isupper(int c);
+int		is_valid_specifier(char c);
 
 #endif

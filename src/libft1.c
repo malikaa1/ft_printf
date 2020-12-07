@@ -5,6 +5,8 @@ int ft_strlen(const char *str)
 {
 	const char *ptr;
 	int i;
+	if(str == NULL)
+		return 0;
 
 	ptr = str;
 	i = 0;
@@ -15,6 +17,7 @@ int ft_strlen(const char *str)
 
 void ft_putchar(char c)
 {
+	//printf("%s", "im here ");
 	// write(1, &c, 1);
 	printf("%c", c);
 }
@@ -238,4 +241,23 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	str[j] = 0;
 	return (str);
+}
+int		ft_isalpha(int c)
+{
+	if (ft_isupper(c) || ft_islower(c))
+		return (1);
+	return (0);
+}
+
+int		ft_isupper(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (1);
+	return (0);
+}
+int		ft_islower(int c)
+{
+	if (c >= 'a' && c <= 'z')
+		return (1);
+	return (0);
 }
