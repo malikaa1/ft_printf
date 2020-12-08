@@ -31,7 +31,17 @@ int main()
     // printf("7=>%7.5s\n", "abcd");//4 =>    abcd
     // printf("8=>%5.7s\n", "abcd");//4 => abcd
 
-    ft_printf("hello, %s.", "gavin");
+    //ft_printf("hello, %s.", "gavin");
+
+    printf("%07i\n", -54);
+    ft_printf("%07i\n", -54);
+
+     printf("%07.i\n", -54);
+    ft_printf("%07.i\n", -54);
+
+     printf("%07.3i\n", -54);
+    ft_printf("%07.3i\n", -54);
+
 
     return 0;
 }

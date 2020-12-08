@@ -1,11 +1,36 @@
 #include "ft_printf.h"
+int ft_sizeof_flag(int nb, int width, int precision)
+{
+    int sizeof_nb;
+    int result;
+
+    sizeof_nb = ft_strlen(ft_itoa(nb, "0123456789"));
+    if (width >= sizeof_nb && precision < width)
+    {
+        if (precision == 0 || precision == -1 || precision < sizeof_nb)
+            result = (nb == 0 && precision == 0) ? width : width - sizeof_nb;
+        else if (precision >= sizeof_nb)
+            result = nb < 0 ? (width - precision - 1) : (width - precision);
+    }
+    else if (width <= sizeof_nb && precision <= sizeof_nb)
+        result = 0;
+    else
+        result = width - precision;
+
+    return result;
+}
 void write_nb(int nb, int precision)
 {
     int lenght_nb;
 
-    if (nb < 0)
-        nb = nb * -1;
     lenght_nb = ft_strlen(ft_itoa(nb, "0123456789"));
+    if (nb == 0 && precision == 0)
+        return;
+    if (nb < 0)
+    {
+        ft_putchar('-');
+        lenght_nb--;
+    }
     while (precision > lenght_nb)
     {
         ft_putchar('0');
@@ -13,34 +38,31 @@ void write_nb(int nb, int precision)
     }
     ft_putnbr(nb);
 }
-void output_int_flag(int nb, int width, int precision, char flag)
+void write_flag(int nb, int width, char flag, int precision)
 {
+    int sizeof_flag;
     char output_char;
-    int length;
 
-    length = precision > ft_strlen(ft_itoa(nb, "0123456789")) ? width - precision : width - ft_strlen(ft_itoa(nb, "0123456789"));
-    if (nb < 0 && precision > ft_strlen(ft_itoa(nb, "0123456789")))
-        length--;
-    if (flag == '-' || flag == ' ')
+    sizeof_flag = ft_sizeof_flag(nb, width, precision);
+    if (flag == '-' || flag == ' ' || (flag == '0' && precision >= 0))
         output_char = ' ';
-    if (flag == '0' && precision <= ft_strlen(ft_itoa(nb, "0123456789")))
+    if (flag == '0' && precision == -1)
         output_char = '0';
-     if (flag == '0' && precision > ft_strlen(ft_itoa(nb, "0123456789")))
-        output_char = ' ';
-    if (nb < 0 && (flag == '-' || flag == '0'))
-        ft_putchar('-');
-    if (flag == '-')
-        write_nb(nb, precision);
-    while (length > 0)
+    while (sizeof_flag > 0)
     {
         ft_putchar(output_char);
-        length--; 
+        sizeof_flag--;
     }
-    if (nb < 0 && flag == ' ')
-        ft_putchar('-');
+}
+void output_int_flag(int nb, int width, int precision, char flag)
+{
+    if (flag == '-')
+        write_nb(nb, precision);
+    write_flag(nb, width, flag, precision);
     if (flag == '0' || flag == ' ')
         write_nb(nb, precision);
 }
+
 void output_d_specifier(va_list *parms_arry, format_parser *parser)
 {
     int d;

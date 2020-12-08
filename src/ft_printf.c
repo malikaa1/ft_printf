@@ -22,6 +22,11 @@ void parse_flags(int *i, char *str, format_parser *parser)
     {
         parser->flag = '0';
         *i = *i + 1;
+        if (str[*i] == '-')
+        {
+            parser->flag = '-';
+            *i = *i + 1;
+        }
     }
     else
     {
@@ -47,7 +52,7 @@ void parse_width(int *i, char *str, format_parser *parser)
         j++;
         count++;
     }
-    if(count == 0)
+    if (count == 0)
         return;
     j = 0;
     width = malloc(count * sizeof(char) + 1);
@@ -86,7 +91,7 @@ void parse_precision(int *i, char *str, format_parser *parser)
         result = ft_substr(str, *i - count, count);
         parser->precision = ft_atoi(result);
     }
-    else if(is_valid_specifier(str[*i]))
+    else if (is_valid_specifier(str[*i]))
     {
         parser->precision = 0;
     }
