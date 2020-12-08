@@ -4,10 +4,7 @@ void write_nb(int nb, int precision)
     int lenght_nb;
 
     if (nb < 0)
-    {
-        ft_putchar('-');
         nb = nb * -1;
-    }
     lenght_nb = ft_strlen(ft_itoa(nb, "0123456789"));
     while (precision > lenght_nb)
     {
@@ -20,24 +17,27 @@ void output_int_flag(int nb, int width, int precision, char flag)
 {
     char output_char;
     int length;
+
     length = precision > ft_strlen(ft_itoa(nb, "0123456789")) ? width - precision : width - ft_strlen(ft_itoa(nb, "0123456789"));
-    length = nb < 0 ? length - 1 : length;
+    if (nb < 0 && precision > ft_strlen(ft_itoa(nb, "0123456789")))
+        length--;
     if (flag == '-' || flag == ' ')
         output_char = ' ';
-    if (flag == '0')
+    if (flag == '0' && precision <= ft_strlen(ft_itoa(nb, "0123456789")))
         output_char = '0';
+     if (flag == '0' && precision > ft_strlen(ft_itoa(nb, "0123456789")))
+        output_char = ' ';
+    if (nb < 0 && (flag == '-' || flag == '0'))
+        ft_putchar('-');
     if (flag == '-')
-    {
-        // if (nb < 0)
-        //     ft_putchar('-');
         write_nb(nb, precision);
-    }
-
     while (length > 0)
     {
         ft_putchar(output_char);
-        length--;
+        length--; 
     }
+    if (nb < 0 && flag == ' ')
+        ft_putchar('-');
     if (flag == '0' || flag == ' ')
         write_nb(nb, precision);
 }

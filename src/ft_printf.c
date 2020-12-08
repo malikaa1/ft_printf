@@ -47,6 +47,8 @@ void parse_width(int *i, char *str, format_parser *parser)
         j++;
         count++;
     }
+    if(count == 0)
+        return;
     j = 0;
     width = malloc(count * sizeof(char) + 1);
     while (j < count)
@@ -83,10 +85,12 @@ void parse_precision(int *i, char *str, format_parser *parser)
         }
         result = ft_substr(str, *i - count, count);
         parser->precision = ft_atoi(result);
-        if (parser->precision <= 0)
-            parser->errors_count += 1;
     }
-    else
+    else if(is_valid_specifier(str[*i]))
+    {
+        parser->precision = 0;
+    }
+    else if (!ft_isdigit(str[*i]) && !is_valid_specifier(str[*i]))
     {
         while (!ft_isdigit(str[*i]) && !is_valid_specifier(str[*i]))
             *i = *i + 1;
@@ -162,15 +166,3 @@ int is_valid_specifier(char c)
 }
 
 // %[flags][width][.precision][length]specifier
-
-// int main()
-// {
-//     //ft_printf("=>%.03s\n", NULL);
-//     //ft_printf("=>%s\n", NULL);
-//     char *s_hidden = "tototototo";
-//     printf("%3.s", s_hidden);
-//     // ft_printf("%10.9s", "lol");
-//     //printf("=>%s\n", NULL);
-//     //ft_printf("%.03s", NULL);
-//     return 0;
-// }

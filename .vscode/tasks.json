@@ -8,6 +8,8 @@
                 "-g",
                 "D:\\projets\\42\\ft_printf\\src\\ft_printf.c",
                 "-g",
+                "D:\\projets\\42\\ft_printf\\src\\main.c",
+                "-g",
                 "D:\\projets\\42\\ft_printf\\src\\libft1.c",
                 "-g",
                 "D:\\projets\\42\\ft_printf\\src\\pointer.c",

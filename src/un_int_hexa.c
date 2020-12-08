@@ -13,16 +13,16 @@ void output_x_flags(format_parser *parser, char *str, int precision, int width)
     if (parser->flag == '-')
     {
         write_str_x(str, precision);
-        write_flags(' ', width, ft_strlen(str), precision);
+        write_flags(' ', str, width, precision);
     }
     else if (parser->flag == '0')
     {
-        write_flags('0', width, ft_strlen(str), precision);
+        write_flags('0', str, width, precision);
         write_str_x(str, precision);
     }
     else if (parser->flag == ' ')
     {
-        write_flags(' ', width, ft_strlen(str), precision);
+        write_flags(' ', str, width, precision);
         write_str_x(str, precision);
     }
 }
