@@ -14,6 +14,8 @@
                 "-g",
                 "D:\\projets\\42\\ft_printf\\src\\pointer.c",
                 "-g",
+                "D:\\projets\\42\\ft_printf\\src\\unsigned_int.c",
+                "-g",
                 "D:\\projets\\42\\ft_printf\\src\\string.c",
                 "-g",
                 "D:\\projets\\42\\ft_printf\\src\\Character.c",

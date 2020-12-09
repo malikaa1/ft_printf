@@ -11,7 +11,8 @@ SRCS = src/ft_printf.c\
 		src/libft1.c\
 		src/Character.c\
 		src/string.c\
-		src/un_int_hexa.c
+		src/un_int_hexa.c\
+		src/unsigned_int.c
 
 OBJS = ${SRCS:.c=.o}
 

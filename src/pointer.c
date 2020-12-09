@@ -1,55 +1,51 @@
 #include "ft_printf.h"
 
-void pointer_flag(int lenght)
+void write_flag_p(int size)
 {
-    int j;
-    if (lenght < 8)
-    {
-        j = 8 - lenght;
-        while (j > 0)
-        {
-            ft_putchar('0');
-            j--;
-        }
-    }
-}
-void output_pointer_flag(unsigned int ptr, int width, int lenght, char flag)
-{
-    int i;
-
-    i = width - lenght - (8 - lenght);
-    if (flag == '-')
-    {
-        pointer_flag(lenght);
-        ft_putstr(ft_itoa(ptr, "0123456789ABCDEF"));
-    }
-    while (i > 0)
+    while (size > 0)
     {
         ft_putchar(' ');
-        i--;
+        size--;
     }
-    if (flag == '0' || flag == ' ')
+}
+void output_pointer_flag(unsigned int ptr, int width, int precision, char flag)
+{
+    int length;
+
+    length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
+    width = width > length ? (width - precision - length - 2) : 0;
+    if (flag == ' ' || flag == '0')
     {
-        pointer_flag(lenght);
-        ft_putstr(ft_itoa(ptr, "0123456789ABCDEF"));
+        write_flag_p(width);
+        ft_putstr("0x");
+        while ((precision - length) > 0)
+        {
+            ft_putchar('0');
+            precision--;
+        }
+        ft_putstr(ft_itoa(ptr, "0123456789abcdef"));
+    }
+    if (flag == '-')
+    {
+        ft_putstr("0x");
+        ft_putstr(ft_itoa(ptr, "0123456789abcdef"));
+        write_flag_p(width);
     }
 }
 void output_p_specifier(va_list *parms_arry, format_parser *parser)
 {
     int ptr;
     int width;
-    int lenght;
+    int length;
+    int precision;
 
-    if (parser->is_dynamic_wdith == 0)
-    {
-        ptr = va_arg(*parms_arry, int);
-        width = parser->width;
-    }
-    else if (parser->is_dynamic_wdith == 1)
-    {
-        width = va_arg(*parms_arry, int);
-        ptr = va_arg(*parms_arry, int);
-    }
-    lenght = ft_strlen(ft_itoa(ptr, "0123456789ABCDEF"));
-    output_pointer_flag(ptr, width, lenght, parser->flag);
+    width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
+    ptr = va_arg(*parms_arry, int);
+    length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
+    precision = parser->precision < length || parser->precision == -1 ? 0 : parser->precision;
+
+    if (ptr == 0)
+        ft_putstr("(nil)");
+    else
+        output_pointer_flag(ptr, width, precision, parser->flag);
 }

@@ -33,15 +33,24 @@ int main()
 
     //ft_printf("hello, %s.", "gavin");
 
-    printf("%07i\n", -54);
-    ft_printf("%07i\n", -54);
+    //printf("%07i\n", -54);
+    // printf("%.5x\n", 21);
+    //ft_printf("%.5x\n", 21);
+    // printf("%9.2p", 1234);
+    // printf("\n");
+    // printf("%2.9p\n", 1234);
+    // printf("%09.5p\n", 1234);
+    // printf("%-9.5p\n", 1234);
+    // printf("%2.9p\n", 1234);
 
-     printf("%07.i\n", -54);
-    ft_printf("%07.i\n", -54);
+    ft_printf("%2.9p", 1234);
 
-     printf("%07.3i\n", -54);
-    ft_printf("%07.3i\n", -54);
 
+    //  printf("%07.i\n", -54);
+    // ft_printf("%07.i\n", -54);
+
+    //  printf("%07.3i\n", -54);
+    // ft_printf("%07.3i\n", -54);
 
     return 0;
 }
