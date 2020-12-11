@@ -1,5 +1,5 @@
 #include "ft_printf.h"
-int ft_sizeof_flag_(unsigned long nb, int width, int precision)
+int ft_sizeof_flag_u(unsigned long nb, int width, int precision)
 {
     int sizeof_nb;
     int result;
@@ -17,7 +17,7 @@ int ft_sizeof_flag_(unsigned long nb, int width, int precision)
     else
         result = width - precision;
 
-    return result;
+    return (result);
 }
 void write_nb_u(unsigned long nb, int precision)
 {
@@ -34,12 +34,14 @@ void write_nb_u(unsigned long nb, int precision)
     ft_putnbr(nb);
 }
 
-void write_flag_(unsigned long nb, int width, char flag, int precision)
+void write_flag_u(unsigned long nb, int width, char flag, int precision)
 {
     int sizeof_flag;
     char output_char;
 
-    sizeof_flag = ft_sizeof_flag_(nb, width, precision);
+    if (width == -1)
+        return;
+    sizeof_flag = ft_sizeof_flag_u(nb, width, precision);
     if (flag == '-' || flag == ' ' || (flag == '0' && precision >= 0))
         output_char = ' ';
     if (flag == '0' && precision == -1)
@@ -54,7 +56,7 @@ void output_u_flag(unsigned long nb, int width, int precision, char flag)
 {
     if (flag == '-')
         write_nb_u(nb, precision);
-    write_flag_(nb, width, flag, precision);
+    write_flag_u(nb, width, flag, precision);
     if (flag == '0' || flag == ' ')
         write_nb_u(nb, precision);
 }

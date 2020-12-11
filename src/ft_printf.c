@@ -7,8 +7,10 @@ void output_percent(char *arg)
     lenght = ft_strlen(arg);
 
     if (arg[lenght - 1] == '%' && ft_isalpha(arg[1]) == 0)
+    {
         ft_putchar('%');
-    return;
+        // *i = lenght;
+    }
 }
 
 void parse_flags(int *i, char *str, format_parser *parser)
@@ -29,9 +31,7 @@ void parse_flags(int *i, char *str, format_parser *parser)
         }
     }
     else
-    {
         parser->flag = ' ';
-    }
 }
 
 void parse_width(int *i, char *str, format_parser *parser)
@@ -39,6 +39,7 @@ void parse_width(int *i, char *str, format_parser *parser)
     int count;
     int j;
     char *width;
+
     count = 0;
     j = *i;
     if (str[j] == '*')
@@ -89,12 +90,15 @@ void parse_precision(int *i, char *str, format_parser *parser)
             count++;
         }
         result = ft_substr(str, *i - count, count);
+        // if (result[0] == '0' && count > 1 && ft_atoi(result) < 6)
+        //     parser->precision = 0;
+        // else
         parser->precision = ft_atoi(result);
+
+        free(result);
     }
     else if (is_valid_specifier(str[*i]))
-    {
         parser->precision = 0;
-    }
     else if (!ft_isdigit(str[*i]) && !is_valid_specifier(str[*i]))
     {
         while (!ft_isdigit(str[*i]) && !is_valid_specifier(str[*i]))
@@ -106,12 +110,24 @@ void parse_precision(int *i, char *str, format_parser *parser)
 void parse_specifier(int *i, char *str, format_parser *parser)
 {
     if (is_valid_specifier(str[*i]))
+    {
         parser->specifier = str[*i];
-    else
-        parser->errors_count += 1;
-    *i = *i + 1;
-}
+        *i = *i + 1;
+        return;
+    }
+    else if (is_valid_specifier(str[*i]) == 0)
+    {
+        *i = *i + 1;
+        if (is_valid_specifier(str[*i]))
+        {
+            parser->specifier = str[*i];
+            *i = *i + 1;
+        }
 
+        // else
+        //     parser->errors_count += 1;
+    }
+}
 void output(va_list *parms_arry, format_parser *parser)
 {
     if (parser->errors_count > 0)
@@ -167,7 +183,7 @@ int ft_printf(char *args, ...)
 
 int is_valid_specifier(char c)
 {
-    return c == 'd' || c == 'i' || c == 'u' || c == 'o' || c == 'x' || c == 'X' || c == 'f' || c == 'F' || c == 'e' || c == 'E' || c == 'g' || c == 'G' || c == 'a' || c == 'A' || c == 'c' || c == 's' || c == 'p' || c == 'n' ? 1 : 0;
+    return (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == 'c' || c == 's' || c == 'p' ? 1 : 0);
 }
 
 // %[flags][width][.precision][length]specifier

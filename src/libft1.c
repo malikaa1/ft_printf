@@ -5,7 +5,7 @@ int ft_strlen(const char *str)
 {
 	const char *ptr;
 	int i;
-	if(str == NULL)
+	if (str == NULL)
 		return 0;
 
 	ptr = str;
@@ -18,26 +18,44 @@ int ft_strlen(const char *str)
 void ft_putchar(char c)
 {
 	//printf("%s", "im here ");
-	// write(1, &c, 1);
-	printf("%c", c);
+	write(1, &c, 1);
+	//printf("%c", c);
 }
 
 void ft_putstr(char *s)
 {
-	// int i;
+	int i;
 
-	// i = 0;
+	i = 0;
 	if (s == NULL)
 		return;
-	printf("%s", s);
-	// while (s[i] != '\0')
-	// {
-	// 	write(1, &s[i], 1);
-	// 	i++;
-	// }
+	// printf("%s", s);
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
 }
 
-void ft_putnbr(long long nb)
+char *ft_strdup(char *src)
+{
+	int i;
+	int len;
+	char *str;
+
+	len = 0;
+	while (src[len])
+		len++;
+	str = (char *)malloc(sizeof(*str) * (len + 1));
+	i = 0;
+	while (i < len)
+	{
+		str[i] = src[i];
+		i++;
+	}
+	return (str);
+}
+void ft_putnbr(long nb)
 {
 	int i;
 
@@ -242,27 +260,27 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	str[j] = 0;
 	return (str);
 }
-int		ft_isalpha(int c)
+int ft_isalpha(int c)
 {
 	if (ft_isupper(c) || ft_islower(c))
 		return (1);
 	return (0);
 }
 
-int		ft_isupper(int c)
+int ft_isupper(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (1);
 	return (0);
 }
-int		ft_islower(int c)
+int ft_islower(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (1);
 	return (0);
 }
 
-int	ft_strcmp(char *s1, char *s2)
+int ft_strcmp(char *s1, char *s2)
 {
 	int i;
 

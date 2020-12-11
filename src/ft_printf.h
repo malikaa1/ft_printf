@@ -51,7 +51,7 @@ int is_valid_specifier(char c);
 int ft_strlen(const char *str);
 void ft_putchar(char c);
 void ft_putstr(char *s);
-void ft_putnbr(long long nb);
+void ft_putnbr(long nb);
 int ft_isdigit(int c);
 int check_base(char *base);
 char *ft_itoa(long long nbr, char *base);
