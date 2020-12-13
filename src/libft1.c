@@ -55,11 +55,12 @@ char *ft_strdup(char *src)
 	}
 	return (str);
 }
-void ft_putnbr(long nb)
+void ft_putnbr(long long nb)
 {
 	int i;
 
 	i = 1;
+
 	if (nb < 0)
 	{
 		nb = -nb;

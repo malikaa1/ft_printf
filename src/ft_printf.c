@@ -1,12 +1,19 @@
 #include "ft_printf.h"
 
-void output_percent(char *arg)
+void output_percent(int *i, char *arg, format_parser *parser)
 {
     int lenght;
 
+    int j = *i - 1;
     lenght = ft_strlen(arg);
-
-    if (arg[lenght - 1] == '%' && ft_isalpha(arg[1]) == 0)
+    if (arg[*i] == '%' && arg[j] == '%')
+    {
+        ft_putchar('%');
+        *i = *i + 1;
+        ft_putchar(arg[*i]);
+        parser->errors_count += 1;
+    }
+    else if (arg[lenght - 1] == '%' && ft_isalpha(arg[1]) == 0)
     {
         ft_putchar('%');
         // *i = lenght;
@@ -15,6 +22,9 @@ void output_percent(char *arg)
 
 void parse_flags(int *i, char *str, format_parser *parser)
 {
+    if (str[*i] == '\0')
+        return;
+
     if (str[*i] == '-')
     {
         parser->flag = '-';
@@ -30,8 +40,6 @@ void parse_flags(int *i, char *str, format_parser *parser)
             *i = *i + 1;
         }
     }
-    else
-        parser->flag = ' ';
 }
 
 void parse_width(int *i, char *str, format_parser *parser)
@@ -39,6 +47,9 @@ void parse_width(int *i, char *str, format_parser *parser)
     int count;
     int j;
     char *width;
+
+    if (str[*i] == '\0')
+        return;
 
     count = 0;
     j = *i;
@@ -72,6 +83,8 @@ void parse_precision(int *i, char *str, format_parser *parser)
 {
     char *result;
     int count;
+    if (str[*i] == '\0')
+        return;
 
     count = 0;
     if (str[*i] != '.')
@@ -90,11 +103,7 @@ void parse_precision(int *i, char *str, format_parser *parser)
             count++;
         }
         result = ft_substr(str, *i - count, count);
-        // if (result[0] == '0' && count > 1 && ft_atoi(result) < 6)
-        //     parser->precision = 0;
-        // else
         parser->precision = ft_atoi(result);
-
         free(result);
     }
     else if (is_valid_specifier(str[*i]))
@@ -103,17 +112,18 @@ void parse_precision(int *i, char *str, format_parser *parser)
     {
         while (!ft_isdigit(str[*i]) && !is_valid_specifier(str[*i]))
             *i = *i + 1;
-        parser->errors_count += 1;
     }
 }
 
 void parse_specifier(int *i, char *str, format_parser *parser)
 {
-    if (is_valid_specifier(str[*i]))
+    if (str[*i] == '\0')
+        return;
+
+    if (is_valid_specifier(str[*i]) || str[*i] == '%')
     {
         parser->specifier = str[*i];
         *i = *i + 1;
-        return;
     }
     else if (is_valid_specifier(str[*i]) == 0)
     {
@@ -123,9 +133,6 @@ void parse_specifier(int *i, char *str, format_parser *parser)
             parser->specifier = str[*i];
             *i = *i + 1;
         }
-
-        // else
-        //     parser->errors_count += 1;
     }
 }
 void output(va_list *parms_arry, format_parser *parser)
@@ -136,6 +143,10 @@ void output(va_list *parms_arry, format_parser *parser)
             va_arg(*parms_arry, int);
         return;
     }
+    if (parser->specifier == '%')
+        ft_putchar('%');
+    if (parser->specifier == ' ')
+        return;
     if (parser->specifier == 'd' || parser->specifier == 'i')
         output_d_specifier(parms_arry, parser);
     if (parser->specifier == 's')
@@ -164,7 +175,7 @@ int ft_printf(char *args, ...)
         {
             INIT_PARSER(parser);
             i++;
-            output_percent(args);
+            //output_percent(&i, args, &parser);
             parse_flags(&i, args, &parser);
             parse_width(&i, args, &parser);
             parse_precision(&i, args, &parser);
@@ -172,13 +183,10 @@ int ft_printf(char *args, ...)
             output(&parms_arry, &parser);
         }
         else
-        {
-            ft_putchar(args[i]);
-            i++;
-        }
+            ft_putchar(args[i++]);
     }
-    return 0;
     va_end(parms_arry);
+    return 0;
 }
 
 int is_valid_specifier(char c)

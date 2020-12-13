@@ -19,7 +19,7 @@ int ft_sizeof_flag_u(unsigned long nb, int width, int precision)
 
     return (result);
 }
-void write_nb_u(unsigned long nb, int precision)
+void write_nb_u(long long nb, int precision)
 {
     int lenght_nb;
 
@@ -32,6 +32,7 @@ void write_nb_u(unsigned long nb, int precision)
         precision--;
     }
     ft_putnbr(nb);
+   //ft_itoa(nb, "0123456789");
 }
 
 void write_flag_u(unsigned long nb, int width, char flag, int precision)
@@ -62,12 +63,12 @@ void output_u_flag(unsigned long nb, int width, int precision, char flag)
 }
 void output_u_specifier(va_list *parms_arry, format_parser *parser)
 {
-    unsigned long un_int;
+    long long un_int;
     int precision;
     int width;
 
     width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
     precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
-    un_int = va_arg(*parms_arry, int);
+    un_int = va_arg(*parms_arry, unsigned long);
     output_u_flag(un_int, width, precision, parser->flag);
 }

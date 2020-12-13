@@ -50,6 +50,11 @@ void write_flags(char c, char *str, int width, int precision)
 
 void output_s_flags(format_parser *parser, char *str, int precision, int width)
 {
+    if ( width < -1)
+    {
+        parser->flag = '-';
+        width = width * -1;
+    }
     if (parser->flag == '-')
     {
         write_str(str, precision);
@@ -75,9 +80,8 @@ void output_s_specifier(va_list *parms_arry, format_parser *parser)
 
     width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
     precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
-
     arg = va_arg(*parms_arry, char *);
     arg = arg == NULL ? "(null)" : arg;
-
+    precision = precision < -1 ? ft_strlen(arg) : precision;
     output_s_flags(parser, arg, precision, width);
 }

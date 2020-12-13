@@ -8,7 +8,7 @@ void write_flag_p(int size)
         size--;
     }
 }
-void output_pointer_flag(unsigned int ptr, int width, int precision, char flag)
+void output_pointer_flag(long long int ptr, int width, int precision, char flag)
 {
     int length;
 
@@ -34,13 +34,13 @@ void output_pointer_flag(unsigned int ptr, int width, int precision, char flag)
 }
 void output_p_specifier(va_list *parms_arry, format_parser *parser)
 {
-    int ptr;
+    long long int ptr;
     int width;
     int length;
     int precision;
 
     width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
-    ptr = va_arg(*parms_arry, int);
+    ptr = va_arg(*parms_arry, long long int);
     length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
     precision = parser->precision < length || parser->precision == -1 ? 0 : parser->precision;
 

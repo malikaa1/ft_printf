@@ -45,6 +45,7 @@ void write_flag(int nb, int width, char flag, int precision)
     int sizeof_flag;
     char output_char;
 
+   
     sizeof_flag = ft_sizeof_flag(nb, width, precision);
     if (flag == '-' || flag == ' ' || (flag == '0' && precision >= 0))
         output_char = ' ';
@@ -80,11 +81,15 @@ void output_d_specifier(va_list *parms_arry, format_parser *parser)
     int d;
     int width;
     int precision;
+    //char *result;
 
     width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
     precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
     d = va_arg(*parms_arry, int);
+     if (width < -1)
+    {
+        width = width * -1;
+        parser->flag = '-';
+    }
     output_int_flag(d, width, precision, parser->flag);
 }
-
-

@@ -31,21 +31,15 @@ int main()
     // printf("7=>%7.5s\n", "abcd");//4 =>    abcd
     // printf("8=>%5.7s\n", "abcd");//4 => abcd
 
-    // ft_printf("%u\n", 4294967295u);
-    // printf("%u", 4294967295u);
+    // int r00 = 0;
+    // ft_printf("Lalalala, %d%% des gens qui parlent à Ly adorent %s. Ou Presque. %p", 100, "Ly", &r00);
+    // printf("\n");
+    // printf("Lalalala, %d%% des gens qui parlent à Ly adorent %s. Ou Presque. %p", 100, "Ly", &r00);
 
-    //printf("%7.5s\n", "yolo");
-    //ft_printf("%7.5s\n", "yolo");
-    // ft_printf("%7.5s\n", "bombastic");
-    // printf("%7.5s\n", "bombastic");
-    //ft_printf("%3.3s%7.7s", "hello", "world");
-    //ft_printf("%.03s", "hello");
-
-    ft_printf("%%d 0000042 == |%d|", 0000042);
+    
+    ft_printf("%5");
    
-    printf("\n");
 
-    printf("%%d 0000042 == |%d|", 0000042);
-
+  
     return 0;
 }
