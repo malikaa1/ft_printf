@@ -1,37 +1,39 @@
 #include "ft_printf.h"
 
-void write_str(char *str, int precision)
+int write_str(char *str, int precision)
 {
     int i = 0;
     if (ft_strcmp(str, "(null)") == 0 && precision < 6 && precision != -1)
-        return;
+        return 0;
     precision = precision == -1 || precision > ft_strlen(str) ? ft_strlen(str) : precision;
     while (str[i] != '\0' && i < precision)
     {
         ft_putchar(str[i]);
         i++;
     }
+    return i;
 }
-void write_flags(char c, char *str, int width, int precision)
+
+int write_flags(char c, char *str, int width, int precision)
 {
     int size;
     int length;
+    int count = 0;
     if (width == -1)
-        return;
+        return 0;
     length = ft_strlen(str);
     precision = precision > width ? width : precision;
     if (precision >= length && width > precision)
     {
-        //precision = 0;
         size = width - length;
     }
-    else if (ft_strcmp(str, "(null)") == 0 && precision > 0 && width >= 6 )
-       size = width;
-    else if (ft_strcmp(str, "(null)") == 0 && precision > 0 && width < 6 && width > precision )
-       size = width;
+    else if (ft_strcmp(str, "(null)") == 0 && precision > 0 && width >= 6)
+        size = width;
+    else if (ft_strcmp(str, "(null)") == 0 && precision > 0 && width < 6 && width > precision)
+        size = width;
     else if (precision == -1)
         size = width - length;
-    
+
     else if (width > precision && length < width)
         size = width - precision;
     else if (width > precision)
@@ -43,36 +45,39 @@ void write_flags(char c, char *str, int width, int precision)
 
     while (size > 0)
     {
-        ft_putchar(c);
+        count += write_char(c);
         size--;
     }
+    return count;
 }
 
-void output_s_flags(format_parser *parser, char *str, int precision, int width)
+int output_s_flags(format_parser *parser, char *str, int precision, int width)
 {
-    if ( width < -1)
+    int count = 0;
+    if (width < -1)
     {
         parser->flag = '-';
         width = width * -1;
     }
     if (parser->flag == '-')
     {
-        write_str(str, precision);
-        write_flags(' ', str, width, precision);
+        count += write_str(str, precision);
+        count += write_flags(' ', str, width, precision);
     }
     else if (parser->flag == '0')
     {
-        write_flags(' ', str, width, precision);
-        write_str(str, precision);
+        count += write_flags(' ', str, width, precision);
+        count += write_str(str, precision);
     }
     else if (parser->flag == ' ')
     {
-        write_flags(' ', str, width, precision);
-        write_str(str, precision);
+        count += write_flags(' ', str, width, precision);
+        count += write_str(str, precision);
     }
+    return count;
 }
 
-void output_s_specifier(va_list *parms_arry, format_parser *parser)
+int output_s_specifier(va_list *parms_arry, format_parser *parser)
 {
     char *arg;
     int precision;
@@ -83,5 +88,5 @@ void output_s_specifier(va_list *parms_arry, format_parser *parser)
     arg = va_arg(*parms_arry, char *);
     arg = arg == NULL ? "(null)" : arg;
     precision = precision < -1 ? ft_strlen(arg) : precision;
-    output_s_flags(parser, arg, precision, width);
+    return output_s_flags(parser, arg, precision, width);
 }

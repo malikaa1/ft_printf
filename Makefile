@@ -9,10 +9,13 @@ SRCS = src/ft_printf.c\
 		src/integer.c\
 		src/pointer.c\
 		src/libft1.c\
+		src/libft2.c\
+		src/libft3.c\
 		src/Character.c\
 		src/string.c\
 		src/un_int_hexa.c\
-		src/unsigned_int.c
+		src/unsigned_int.c\
+		src/ft_parser.c
 
 OBJS = ${SRCS:.c=.o}
 

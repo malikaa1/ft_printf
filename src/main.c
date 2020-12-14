@@ -37,8 +37,10 @@ int main()
     // printf("Lalalala, %d%% des gens qui parlent à Ly adorent %s. Ou Presque. %p", 100, "Ly", &r00);
 
     
-    ft_printf("%5");
-   
+    int count = ft_printf("this %u number\n", 17);
+   printf("%d\n", count);
+    int count_ = ft_printf("this %u number\n", 17);
+   printf("%d", count_);
 
   
     return 0;
