@@ -19,6 +19,7 @@ int ft_sizeof_flag_u(unsigned long nb, int width, int precision)
 
     return (result);
 }
+
 int write_nb_u(long long nb, int precision)
 {
     int lenght_nb;
@@ -34,16 +35,16 @@ int write_nb_u(long long nb, int precision)
         precision--;
     }
     count += write_number(nb);
-    return count;
-    //ft_itoa(nb, "0123456789");
+    return (count);
 }
 
 int write_flag_u(unsigned long nb, int width, char flag, int precision)
 {
     int sizeof_flag;
     char output_char;
-    int count = 0;
-
+    int count;
+    
+    count = 0;
     if (width == -1)
         return 0;
     sizeof_flag = ft_sizeof_flag_u(nb, width, precision);
@@ -56,17 +57,19 @@ int write_flag_u(unsigned long nb, int width, char flag, int precision)
         count += write_char(output_char);
         sizeof_flag--;
     }
-    return count;
+    return (count);
 }
 int output_u_flag(unsigned long nb, int width, int precision, char flag)
 {
-    int count = 0;
+    int count;
+    
+    count = 0;
     if (flag == '-')
         count += write_nb_u(nb, precision);
     count += write_flag_u(nb, width, flag, precision);
     if (flag == '0' || flag == ' ')
         count += write_nb_u(nb, precision);
-    return count;
+    return (count);
 }
 int output_u_specifier(va_list *parms_arry, format_parser *parser)
 {
@@ -77,5 +80,5 @@ int output_u_specifier(va_list *parms_arry, format_parser *parser)
     width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
     precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
     un_int = va_arg(*parms_arry, unsigned long);
-    return output_u_flag(un_int, width, precision, parser->flag);
+    return (output_u_flag(un_int, width, precision, parser->flag));
 }

@@ -36,7 +36,7 @@ int output(va_list *parms_arry, format_parser *parser)
     if (parser->specifier == 'x')
         return output_x_specifier(parms_arry, parser);
     if (parser->specifier == 'X')
-        return output_X_specifier(parms_arry, parser);
+        return output_x_upp_specifier(parms_arry, parser);
     if (parser->specifier == 'p')
         return output_p_specifier(parms_arry, parser);
     return 0;

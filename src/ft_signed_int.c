@@ -16,19 +16,20 @@ int ft_sizeof_flag(int nb, int width, int precision)
         result = 0;
     else
         result = width - precision;
-
-    return result;
+    return (result);
 }
+
 int write_nb(int nb, int precision, char flag)
 {
     int lenght_nb;
-    int count = 0;
-
+    int count;
+    
+    count = 0;
     lenght_nb = ft_strlen(ft_itoa(nb, "0123456789"));
     if (nb < 0 && precision > lenght_nb && flag == '0')
         lenght_nb = lenght_nb - 1;
     if (nb == 0 && precision == 0)
-        return 0;
+        return (0);
     if (nb < 0 && (flag == ' ' || flag == '-'))
     {
         count += write_char('-');
@@ -40,14 +41,16 @@ int write_nb(int nb, int precision, char flag)
         precision--;
     }
     count += write_number(nb);
-    return count;
+    return (count);
 }
+
 int write_flag(int nb, int width, char flag, int precision)
 {
     int sizeof_flag;
     char output_char;
-    int count = 0;
+    int count;
 
+    count = 0;
     sizeof_flag = ft_sizeof_flag(nb, width, precision);
     if (flag == '-' || flag == ' ' || (flag == '0' && precision >= 0))
         output_char = ' ';
@@ -68,11 +71,14 @@ int write_flag(int nb, int width, char flag, int precision)
         if (output_char == ' ' && flag != ' ' && flag != '-')
             count += write_char('-');
     }
-    return count;
+    return (count);
 }
+
 int output_int_flag(int nb, int width, int precision, char flag)
 {
-    int count = 0;
+    int count;
+    
+    count = 0;
     if (flag == '-')
         count += write_nb(nb, precision, flag);
     count += write_flag(nb, width, flag, precision);
@@ -80,7 +86,7 @@ int output_int_flag(int nb, int width, int precision, char flag)
         count += write_nb(nb, precision, flag);
     if (nb < 0)
         count = count - 1;
-    return count;
+    return (count);
 }
 int output_d_specifier(va_list *parms_arry, format_parser *parser)
 {

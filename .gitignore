@@ -1,1 +1,6 @@
 pft_2019/
+pft/
+curqui_test/**
+*.o
+*.exe
+*.out

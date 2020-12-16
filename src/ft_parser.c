@@ -48,23 +48,14 @@ void parse_width(int *i, char *str, format_parser *parser)
     free(width);
 }
 
-void parse_precision(int *i, char *str, format_parser *parser)
+void ft_check_str(char *str, int *i, format_parser *parser)
 {
-    char *result;
     int count;
-    if (str[*i] == '\0')
-        return;
+    char *result;
 
     count = 0;
-    if (str[*i] != '.')
-        return;
-    *i = *i + 1;
-    if (str[*i] == '*')
-    {
-        parser->is_dynamic_precision = 1;
-        *i = *i + 1;
-    }
-    else if (ft_isdigit(str[*i]) == 1)
+
+    if (ft_isdigit(str[*i]) == 1)
     {
         while (ft_isdigit(str[*i]))
         {
@@ -82,6 +73,22 @@ void parse_precision(int *i, char *str, format_parser *parser)
         while (!ft_isdigit(str[*i]) && !is_valid_specifier(str[*i]))
             *i = *i + 1;
     }
+}
+
+void parse_precision(int *i, char *str, format_parser *parser)
+{
+    if (str[*i] == '\0')
+        return;
+    if (str[*i] != '.')
+        return;
+    *i = *i + 1;
+    if (str[*i] == '*')
+    {
+        parser->is_dynamic_precision = 1;
+        *i = *i + 1;
+    }
+    else
+        ft_check_str(str, i, parser);
 }
 
 void parse_specifier(int *i, char *str, format_parser *parser)

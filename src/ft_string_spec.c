@@ -2,7 +2,9 @@
 
 int write_str(char *str, int precision)
 {
-    int i = 0;
+    int i;
+    
+    i = 0;
     if (ft_strcmp(str, "(null)") == 0 && precision < 6 && precision != -1)
         return 0;
     precision = precision == -1 || precision > ft_strlen(str) ? ft_strlen(str) : precision;
@@ -11,7 +13,7 @@ int write_str(char *str, int precision)
         ft_putchar(str[i]);
         i++;
     }
-    return i;
+    return (i);
 }
 
 int write_flags(char c, char *str, int width, int precision)
@@ -19,41 +21,34 @@ int write_flags(char c, char *str, int width, int precision)
     int size;
     int length;
     int count = 0;
+
     if (width == -1)
         return 0;
     length = ft_strlen(str);
     precision = precision > width ? width : precision;
     if (precision >= length && width > precision)
-    {
         size = width - length;
-    }
-    else if (ft_strcmp(str, "(null)") == 0 && precision > 0 && width >= 6)
+    else if ((ft_strcmp(str, "(null)") == 0 && precision > 0 && width >= 6) || width < precision)
         size = width;
     else if (ft_strcmp(str, "(null)") == 0 && precision > 0 && width < 6 && width > precision)
         size = width;
-    else if (precision == -1)
+    else if (precision == -1 || width == precision)
         size = width - length;
-
-    else if (width > precision && length < width)
+    else if ((width > precision && length < width) || width > precision)
         size = width - precision;
-    else if (width > precision)
-        size = width - precision;
-    else if (width == precision)
-        size = width - length;
-    else if (width < precision)
-        size = width;
-
     while (size > 0)
     {
         count += write_char(c);
         size--;
     }
-    return count;
+    return (count);
 }
 
 int output_s_flags(format_parser *parser, char *str, int precision, int width)
 {
-    int count = 0;
+    int count;
+    
+    count = 0;
     if (width < -1)
     {
         parser->flag = '-';
@@ -74,7 +69,7 @@ int output_s_flags(format_parser *parser, char *str, int precision, int width)
         count += write_flags(' ', str, width, precision);
         count += write_str(str, precision);
     }
-    return count;
+    return (count);
 }
 
 int output_s_specifier(va_list *parms_arry, format_parser *parser)
