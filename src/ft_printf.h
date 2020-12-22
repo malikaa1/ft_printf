@@ -33,8 +33,9 @@ int output_d_specifier(va_list *parms_arry, format_parser *parser);
 int output_u_specifier(va_list *parms_arry, format_parser *parser);
 int output_p_specifier(va_list *parms_arry, format_parser *parser);
 int output_s_specifier(va_list *parms_arry, format_parser *parser);
-int output_x_specifier(va_list *parms_arry, format_parser *parser);
+int output_x_specifier(va_list *parms_arry, format_parser *parser, char* base);
 int output_x_upp_specifier(va_list *parms_arry, format_parser *parser);
+int output_x_low_specifier(va_list *parms_arry, format_parser *parser);
 
 int output_int_flag(int nb, int width, int precision, char flag);
 int output_pointer_flag(long long int ptr, int width, int lenght, char flag);

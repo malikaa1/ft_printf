@@ -23,7 +23,7 @@ int write_nb(int nb, int precision, char flag)
 {
     int lenght_nb;
     int count;
-    
+
     count = 0;
     lenght_nb = ft_strlen(ft_itoa(nb, "0123456789"));
     if (nb < 0 && precision > lenght_nb && flag == '0')
@@ -77,7 +77,7 @@ int write_flag(int nb, int width, char flag, int precision)
 int output_int_flag(int nb, int width, int precision, char flag)
 {
     int count;
-    
+
     count = 0;
     if (flag == '-')
         count += write_nb(nb, precision, flag);
@@ -96,6 +96,7 @@ int output_d_specifier(va_list *parms_arry, format_parser *parser)
 
     width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
     precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
+    precision = precision < -1 ? -1 : precision;
     d = va_arg(*parms_arry, int);
     if (width < -1)
     {

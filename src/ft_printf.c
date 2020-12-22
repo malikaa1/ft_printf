@@ -34,7 +34,7 @@ int output(va_list *parms_arry, format_parser *parser)
     if (parser->specifier == 'u')
         return output_u_specifier(parms_arry, parser);
     if (parser->specifier == 'x')
-        return output_x_specifier(parms_arry, parser);
+        return output_x_low_specifier(parms_arry, parser);
     if (parser->specifier == 'X')
         return output_x_upp_specifier(parms_arry, parser);
     if (parser->specifier == 'p')
@@ -56,6 +56,10 @@ int ft_printf(char *args, ...)
     {
         if (args[i] == '%')
         {
+
+            //ft_printf("r%0.*up%0x%0X%-.2d%-*X\n", -4, 672602906, 1391918377, -2147483647, -2147483647, 1, -2147483647);
+
+            
             INIT_PARSER(parser);
             i++;
             parse_flags(&i, args, &parser);
@@ -70,6 +74,3 @@ int ft_printf(char *args, ...)
     va_end(parms_arry);
     return count;
 }
-
-
-
