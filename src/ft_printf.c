@@ -51,15 +51,10 @@ int ft_printf(char *args, ...)
     count = 0;
     va_list parms_arry;
     va_start(parms_arry, args);
-
     while (args[i] != '\0')
     {
         if (args[i] == '%')
         {
-
-            //ft_printf("r%0.*up%0x%0X%-.2d%-*X\n", -4, 672602906, 1391918377, -2147483647, -2147483647, 1, -2147483647);
-
-            
             INIT_PARSER(parser);
             i++;
             parse_flags(&i, args, &parser);

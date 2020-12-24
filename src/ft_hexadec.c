@@ -33,13 +33,13 @@ int write_flag_x(char flag, char *str, int width, int precision)
     if (width == -1)
         return 0;
     length = ft_strlen(str);
-    flag = flag == '0' && precision > 0 ? ' ' : flag;
+    flag = flag == '0' && precision >= 0 ? ' ' : flag;
     precision = precision > width ? width : precision;
-    if (precision >= length && width > precision)
+    if ((precision >= length && width > precision) || width == precision)
         size = width - precision;
     else if ((precision == 0 && width > precision) || width < precision)
         size = width;
-    else if (precision == -1 || width == precision || (width > precision && length >= precision))
+    else if (precision == -1 || (width > precision && length >= precision))
         size = width - length;
     while (size > 0)
     {
@@ -95,7 +95,18 @@ int output_x_specifier(va_list *parms_arry, format_parser *parser, char *base)
     int width;
     unsigned int int_hexa_upp;
 
-    width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
+    //width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
+    if (parser->is_dynamic_wdith == 1)
+    {
+        width = va_arg(*parms_arry, int);
+        if (width < 0)
+        {
+            width = width * -1;
+            parser->flag = '-';
+        }
+    }
+    else
+        width = parser->width;
     precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
     int_hexa_upp = va_arg(*parms_arry, unsigned int);
     arg_x = ft_itoa(int_hexa_upp, base);

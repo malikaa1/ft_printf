@@ -1,5 +1,5 @@
 #include "ft_printf.h"
-int ft_sizeof_flag_u(unsigned long nb, int width, int precision)
+int ft_sizeof_flag_u(unsigned int nb, int width, int precision)
 {
     int sizeof_nb;
     int result;
@@ -20,7 +20,7 @@ int ft_sizeof_flag_u(unsigned long nb, int width, int precision)
     return (result);
 }
 
-int write_nb_u(long long nb, int precision)
+int write_nb_u(unsigned int nb, int precision)
 {
     int lenght_nb;
     int count;
@@ -38,7 +38,7 @@ int write_nb_u(long long nb, int precision)
     return (count);
 }
 
-int write_flag_u(unsigned long nb, int width, char flag, int precision)
+int write_flag_u(unsigned int nb, int width, char flag, int precision)
 {
     int sizeof_flag;
     char output_char;
@@ -50,7 +50,7 @@ int write_flag_u(unsigned long nb, int width, char flag, int precision)
     sizeof_flag = ft_sizeof_flag_u(nb, width, precision);
     if (flag == '-' || flag == ' ' || (flag == '0' && precision >= 0))
         output_char = ' ';
-    if (flag == '0' && precision == -1)
+    else if (flag == '0' && precision <= -1)
         output_char = '0';
     while (sizeof_flag > 0)
     {
@@ -59,7 +59,7 @@ int write_flag_u(unsigned long nb, int width, char flag, int precision)
     }
     return (count);
 }
-int output_u_flag(unsigned long nb, int width, int precision, char flag)
+int output_u_flag(unsigned int nb, int width, int precision, char flag)
 {
     int count;
 
@@ -73,16 +73,22 @@ int output_u_flag(unsigned long nb, int width, int precision, char flag)
 }
 int output_u_specifier(va_list *parms_arry, format_parser *parser)
 {
-    long long un_int;
+    unsigned int un_int;
     int precision;
     int width;
-    width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
-    precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
-    un_int = va_arg(*parms_arry, unsigned long);
-    if (width < -1)
+    //width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
+    if (parser->is_dynamic_wdith == 1)
     {
-        width = width * -1;
-        parser->flag = '-';
+        width = va_arg(*parms_arry, int);
+        if (width < 0)
+        {
+            width = width * -1;
+            parser->flag = '-';
+        }
     }
+    else
+        width = parser->width;
+    precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
+    un_int = va_arg(*parms_arry, unsigned int);
     return (output_u_flag(un_int, width, precision, parser->flag));
 }

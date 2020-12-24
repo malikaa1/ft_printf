@@ -2,23 +2,21 @@
 
 int main()
 {
+    // printf("|%0*.*d |\n", 7, 10, -834190435);
+    // ft_printf("|%0*.*d |\n", 7, 10, -834190435);
 
-    // ft_printf("lE%-1.4sYgkgg\n", NULL);
-    // printf("lE%-1.4sYgkgg\n", NULL);
+    // printf("%012.1ulsL a%19x%0.*i7WA6ER\n", 0, -2147483647, 10, -922569738);
+    // ft_printf("%012.1ulsL a%19x%0.*i7WA6ER\n", 0, -2147483647, 10, -922569738);
 
-    // ft_printf("60Y%%%-12s6U1olE%-1.4sYgkgg", "lf4cezZG97sYZDZY62CqOtccHIW2pcQMB1idy1at3K  StscStC27SoPWpPqCWSBAXf0C1USZL2x8ypB", NULL);
-    // printf("\n");
-    // printf("60Y%%%-12s6U1olE%-1.4sYgkgg", "lf4cezZG97sYZDZY62CqOtccHIW2pcQMB1idy1at3K  StscStC27SoPWpPqCWSBAXf0C1USZL2x8ypB", NULL);
-    // printf("\n");
+    // printf("%016.*i\n", 10, -730170825);
+    // ft_printf("%016.*i\n", 10, -730170825);
 
-    ft_printf("-- %d --\n", ft_printf("%-1.4sYgkgg", NULL));
-    printf("-- %d --\n", printf("%-1.4sYgkgg", NULL));
-    //printf("-- %d --\n", printf("60Y%%%-12s6U1olE%-1.4sYgkgg", "lf4cezZG97sYZDZY62CqOtccHIW2pcQMB1idy1at3K  StscStC27SoPWpPqCWSBAXf0C1USZL2x8ypB", NULL));
-    //  printf("-- %d --\n", printf("60Y%%%-12s6U1olE%-1.4sYgkgg", "lf4cezZG97sYZDZY62CqOtccHIW2pcQMB1idy1at3K  StscStC27SoPWpPqCWSBAXf0C1USZL2x8ypB", NULL));
+    // //printf("%0.0x%-20s%0.*dcHDJY06%*.3s\n", -955681488, NULL, 10, -917364766, -8, "nOlfMfAgxtoXMFCNuR5FfuDqlXzt4cEVkmeQZfDfR4yejzfS0 D8wiQxz6pvstbbo");
+    // ft_printf("%0.0x%-20s%0.*dcHDJY06%*.3s\n", -955681488, NULL, 10, -917364766, -8, "nOlfMfAgxtoXMFCNuR5FfuDqlXzt4cEVkmeQZfDfR4yejzfS0 D8wiQxz6pvstbbo");
+    // printf("%-*i%-16c%0u%0*iQY%8c%-.2X%014.*i2uWmI\n", -7, 2147483647, 'I', -2147483647, 4, 2147483647, 'L', 0, 10, -550885382);
+    // ft_printf("%-*i%-16c%0u%0*iQY%8c%-.2X%014.*i2uWmI\n", -7, 2147483647, 'I', -2147483647, 4, 2147483647, 'L', 0, 10, -550885382);
 
-    // printf("%3.6s", NULL);
-    // printf("\n");
-    // ft_printf("%3.6s", NULL);
-
+    // printf("%0.*ik684a2u0zIX\n", 10, -425194670);
+    // ft_printf("%0.*ik684a2u0zIX\n", 10, -425194670);
     return 0;
 }

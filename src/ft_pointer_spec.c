@@ -3,7 +3,7 @@
 int write_flag_p(int size)
 {
     int count;
-    
+
     count = 0;
     while (size > 0)
     {
@@ -17,7 +17,7 @@ int output_pointer_flag(long long int ptr, int width, int precision, char flag)
 {
     int length;
     int count;
-    
+
     count = 0;
     length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
     width = width > length ? (width - precision - length - 2) : 0;
@@ -47,7 +47,18 @@ int output_p_specifier(va_list *parms_arry, format_parser *parser)
     int length;
     int precision;
 
-    width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
+    //width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
+    if (parser->is_dynamic_wdith == 1)
+    {
+        width = va_arg(*parms_arry, int);
+        if (width < 0)
+        {
+            width = width * -1;
+            parser->flag = '-';
+        }
+    }
+    else
+        width = parser->width;
     ptr = va_arg(*parms_arry, long long int);
     length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
     precision = parser->precision < length || parser->precision == -1 ? 0 : parser->precision;

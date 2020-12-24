@@ -43,7 +43,7 @@ int output_s_flags(format_parser *parser, char *str, int precision, int width);
 int output_x_flags(format_parser *parser, char *str, int precision, int width);
 
 int write_nb(int nb, int precision, char flag);
-int write_nb_u(long long nb, int precision);
+int write_nb_u(unsigned int nb, int precision);
 int write_str(char *str, int precision);
 int write_str_x(char *str, int precision);
 int write_flags(char c, char *str, int width, int precision);
