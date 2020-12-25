@@ -59,6 +59,7 @@ int write_flag_u(unsigned int nb, int width, char flag, int precision)
     }
     return (count);
 }
+
 int output_u_flag(unsigned int nb, int width, int precision, char flag)
 {
     int count;
@@ -71,12 +72,13 @@ int output_u_flag(unsigned int nb, int width, int precision, char flag)
         count += write_nb_u(nb, precision);
     return (count);
 }
+
 int output_u_specifier(va_list *parms_arry, format_parser *parser)
 {
     unsigned int un_int;
     int precision;
     int width;
-    //width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
+
     if (parser->is_dynamic_wdith == 1)
     {
         width = va_arg(*parms_arry, int);

@@ -16,7 +16,7 @@ int write_number(long long nb)
 {
     int length = ft_strlen(ft_itoa(nb, "0123456789"));
     ft_putnbr(nb);
-    return length;
+    return (length);
 }
 
 int output(va_list *parms_arry, format_parser *parser)
@@ -67,5 +67,5 @@ int ft_printf(char *args, ...)
             count += write_char(args[i++]);
     }
     va_end(parms_arry);
-    return count;
+    return (count);
 }

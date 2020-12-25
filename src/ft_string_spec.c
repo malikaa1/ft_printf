@@ -15,11 +15,11 @@ int write_str(char *str, int precision)
     }
     return (i);
 }
+
 int ft_isnull(int precision, int width)
 {
     int size;
-    //%16.5s
-    //%20.6s
+
     size = 0;
     if (precision == -1 || (precision >= 6) || (precision == width && width >= 6))
         size = width - 6;
@@ -27,10 +27,9 @@ int ft_isnull(int precision, int width)
         size = width;
     else if (precision == 0 || (precision > 0 && precision < width) || width == precision)
         size = width;
-    // else
-    //     size = 0;
     return (size);
 }
+
 int write_flags(char c, char *str, int width, int precision)
 {
     int size = 0;
@@ -94,7 +93,6 @@ int output_s_specifier(va_list *parms_arry, format_parser *parser)
     int precision;
     int width;
 
-    //width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, unsigned int) : parser->width;
     if (parser->is_dynamic_wdith == 1)
     {
         width = va_arg(*parms_arry, int);
@@ -110,5 +108,5 @@ int output_s_specifier(va_list *parms_arry, format_parser *parser)
     arg = va_arg(*parms_arry, char *);
     arg = arg == NULL ? "(null)" : arg;
     precision = precision < -1 ? ft_strlen(arg) : precision;
-    return output_s_flags(parser, arg, precision, width);
+    return (output_s_flags(parser, arg, precision, width));
 }

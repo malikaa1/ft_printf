@@ -15,6 +15,7 @@ int ft_count(long long n, char *base)
 	}
 	return (i + 1);
 }
+
 int ft_isdigit(int c)
 {
 	if (c <= '9' && c >= '0')
@@ -48,6 +49,7 @@ int ft_atoi(const char *str)
 		return (sign * result);
 	return (sign == 1 ? -1 : 0);
 }
+
 int check_base(char *base)
 {
 	int i;
@@ -71,6 +73,7 @@ int check_base(char *base)
 	}
 	return (1);
 }
+
 char *ft_itoa(long long nbr, char *base)
 {
 	char *str;

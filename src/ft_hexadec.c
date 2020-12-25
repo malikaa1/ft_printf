@@ -20,7 +20,7 @@ int write_str_x(char *str, int precision)
         }
     }
     count += write_string(str);
-    return count;
+    return (count);
 }
 
 int write_flag_x(char flag, char *str, int width, int precision)
@@ -46,7 +46,7 @@ int write_flag_x(char flag, char *str, int width, int precision)
         count += write_char(flag);
         size--;
     }
-    return count;
+    return (count);
 }
 
 int output_x_flags(format_parser *parser, char *str, int precision, int width)
@@ -69,24 +69,8 @@ int output_x_flags(format_parser *parser, char *str, int precision, int width)
         count += write_flag_x(' ', str, width, precision);
         count += write_str_x(str, precision);
     }
-    return count;
+    return (count);
 }
-
-// int output_x_specifier(va_list *parms_arry, format_parser *parser)
-// {
-//     char *arg_x;
-//     int precision;
-//     int width;
-//     long long int int_hexa;
-
-//     width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
-//     precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
-//     int_hexa = va_arg(*parms_arry, long long int);
-//     arg_x = ft_itoa(int_hexa, "0123456789abcdef");
-//     if (int_hexa > 0 && precision == 0)
-//         precision = ft_strlen(arg_x);
-//     return output_x_flags(parser, arg_x, precision, width);
-// }
 
 int output_x_specifier(va_list *parms_arry, format_parser *parser, char *base)
 {
@@ -95,7 +79,6 @@ int output_x_specifier(va_list *parms_arry, format_parser *parser, char *base)
     int width;
     unsigned int int_hexa_upp;
 
-    //width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
     if (parser->is_dynamic_wdith == 1)
     {
         width = va_arg(*parms_arry, int);
@@ -112,7 +95,7 @@ int output_x_specifier(va_list *parms_arry, format_parser *parser, char *base)
     arg_x = ft_itoa(int_hexa_upp, base);
     if (int_hexa_upp > 0 && precision == 0)
         precision = ft_strlen(arg_x);
-    return output_x_flags(parser, arg_x, precision, width);
+    return (output_x_flags(parser, arg_x, precision, width));
 }
 
 int output_x_low_specifier(va_list *parms_arry, format_parser *parser)

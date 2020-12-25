@@ -1,12 +1,11 @@
 #include "ft_printf.h"
+
 int ft_sizeof_flag(int nb, int width, int precision)
 {
     int sizeof_nb;
     int result;
 
     sizeof_nb = ft_strlen(ft_itoa(nb, "0123456789"));
-    // if (nb < 0)
-    //     sizeof_nb = sizeof_nb + 1;
     if (width >= sizeof_nb && precision < width)
     {
         if (precision == 0 || precision == -1 || precision < sizeof_nb)
@@ -16,8 +15,6 @@ int ft_sizeof_flag(int nb, int width, int precision)
     }
     else if (width <= sizeof_nb && precision <= sizeof_nb)
         result = 0;
-    // else if (nb < 0 && precision > sizeof_nb)
-    //     result = precision - sizeof_nb;
     else
         result = width - precision;
     return (result);
@@ -58,7 +55,6 @@ int write_flag(int nb, int width, char flag, int precision)
     sizeof_flag = ft_sizeof_flag(nb, width, precision);
     if (flag == '-' || flag == ' ' || (flag == '0' && precision >= 0))
         output_char = ' ';
-    //if ((flag == '0' && precision == -1) || (flag == '0' && sizeof_flag > 0))
     if (flag == '0' && precision == -1)
         output_char = '0';
     if (nb < 0)
@@ -93,13 +89,13 @@ int output_int_flag(int nb, int width, int precision, char flag)
         count = count - 1;
     return (count);
 }
+
 int output_d_specifier(va_list *parms_arry, format_parser *parser)
 {
     int d;
     int width;
     int precision;
 
-    //width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
     if (parser->is_dynamic_wdith == 1)
     {
         width = va_arg(*parms_arry, int);

@@ -95,7 +95,6 @@ void parse_specifier(int *i, char *str, format_parser *parser)
 {
     if (str[*i] == '\0')
         return;
-
     if (is_valid_specifier(str[*i]) || str[*i] == '%')
     {
         parser->specifier = str[*i];

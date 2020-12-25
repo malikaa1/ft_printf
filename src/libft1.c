@@ -34,7 +34,6 @@ void ft_putstr(char *s)
 	}
 }
 
-
 void ft_putnbr(long long nb)
 {
 	int i;

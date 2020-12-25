@@ -13,6 +13,7 @@ int write_flag_p(int size)
     }
     return count;
 }
+
 int output_pointer_flag(long long int ptr, int width, int precision, char flag)
 {
     int length;
@@ -38,8 +39,9 @@ int output_pointer_flag(long long int ptr, int width, int precision, char flag)
         count += write_string(ft_itoa(ptr, "0123456789abcdef"));
         count += write_flag_p(width);
     }
-    return count;
+    return (count);
 }
+
 int output_p_specifier(va_list *parms_arry, format_parser *parser)
 {
     long long int ptr;
@@ -47,7 +49,6 @@ int output_p_specifier(va_list *parms_arry, format_parser *parser)
     int length;
     int precision;
 
-    //width = parser->is_dynamic_wdith == 1 ? va_arg(*parms_arry, int) : parser->width;
     if (parser->is_dynamic_wdith == 1)
     {
         width = va_arg(*parms_arry, int);

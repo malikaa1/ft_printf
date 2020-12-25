@@ -20,7 +20,7 @@ SRCS = src/ft_printf.c\
 
 OBJS = ${SRCS:.c=.o}
 
-INCLUDES = src/ft_printf.h
+INCLUDES = includes/ft_printf.h
 
 .c.o: ${CC} ${CFLAGS} -c -I${INCLUDES} $< -o ${<:.c=.o}
 
