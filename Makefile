@@ -4,7 +4,7 @@ CC = gcc
 
 RM = rm -f
 
-CFLAGS = -Wall -Wextra -Werror -c -fPIC
+CFLAGS = -Wall -Wextra -Werror -Iincludes
 
 SRCS = src/ft_printf.c\
 		src/ft_char_spec.c\
@@ -20,9 +20,9 @@ SRCS = src/ft_printf.c\
 
 OBJS = ${SRCS:.c=.o}
 
-INCLUDES = includes/ft_printf.h
+# INCLUDES = includes/ft_printf.h
 
-.c.o: ${CC} ${CFLAGS} -c -I${INCLUDES} $< -o ${<:.c=.o}
+.c.o: ${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 
 
