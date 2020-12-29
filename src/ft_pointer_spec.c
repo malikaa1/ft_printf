@@ -1,20 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_pointer_spec.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mrahmani </var/mail/mrahmani>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/27 16:47:30 by mrahmani          #+#    #+#             */
-/*   Updated: 2020/12/27 17:32:32 by mrahmani         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
-int	write_flag_p(int size)
+int write_flag_p(int size)
 {
-	int		count;
+	int count;
 
 	count = 0;
 	while (size > 0)
@@ -26,14 +14,14 @@ int	write_flag_p(int size)
 	return (count);
 }
 
-int	output_pointer_flag(long long int ptr, int width, int precision, char flag)
+int output_pointer_flag(long long int ptr, int width, int precision, char flag)
 {
-	int		length;
-	int		count;
+	int length;
+	int count;
 
 	count = 0;
 	length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
-	if (width > lenght)
+	if (width > length)
 		width = width - precision - length - 2;
 	else
 		width = 0;
@@ -42,7 +30,7 @@ int	output_pointer_flag(long long int ptr, int width, int precision, char flag)
 		count += write_flag_p(width);
 		count += write_string("0x");
 		while ((precision - length) > 0)
-		{	
+		{
 			count += write_char('0');
 			precision--;
 		}
@@ -57,31 +45,29 @@ int	output_pointer_flag(long long int ptr, int width, int precision, char flag)
 	return (count);
 }
 
-int	output_p_specifier(va_list *parms_arry, format_parser *parser)
+int output_p_specifier(va_list *parms_arry, format_parser *parser)
 {
-	long long int		ptr;
-	int		width;
-	int		length;
-	int		precision;
+	long long int ptr;
+	int length;
+	int precision;
 
 	if (parser->is_dynamic_wdith == 1)
 	{
-		width = va_arg(*parms_arry, int);
-		if (width < 0)
+		parser->width = va_arg(*parms_arry, int);
+		if (parser->width < 0)
 		{
-			width = width * -1;
+			parser->width = parser->width * -1;
 			parser->flag = '-';
 		}
 	}
-	else
-		width = parser->width;
 	ptr = va_arg(*parms_arry, long long int);
 	length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
-	if (parser->precision < length || parser->precision == -1 )
+	if (parser->precision < length || parser->precision == -1)
 		precision = 0;
 	else
-		parser->precision;
+		precision = parser->precision;
 	if (ptr == 0)
 		return (write_string("(nil)"));
 	else
-		return (output_pointer_flag(ptr, width, precision, parser->flag));
+		return (output_pointer_flag(ptr, parser->width, precision, parser->flag));
+}
