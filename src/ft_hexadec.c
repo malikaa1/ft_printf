@@ -30,7 +30,8 @@ int write_flag_x(char flag, char *str, int width, int precision)
     int count;
 
     count = 0;
-    if (width == -1)
+    size = 0;
+	if (width == -1)
         return 0;
     length = ft_strlen(str);
     flag = flag == '0' && precision >= 0 ? ' ' : flag;

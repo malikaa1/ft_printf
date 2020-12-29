@@ -4,7 +4,8 @@ int ft_sizeof_flag_u(unsigned int nb, int width, int precision)
     int sizeof_nb;
     int result;
 
-    sizeof_nb = ft_strlen(ft_itoa(nb, "0123456789"));
+    result = 0;
+	sizeof_nb = ft_strlen(ft_itoa(nb, "0123456789"));
     if (width >= sizeof_nb && precision < width)
     {
         if (precision == 0 || precision == -1 || precision < sizeof_nb)
