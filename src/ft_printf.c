@@ -22,7 +22,7 @@ int write_number(long long nb)
 int output(va_list *parms_arry, format_parser *parser)
 {
     if (parser->specifier == '%')
-        return write_char('%');
+        return (ft_print_percent(parser->flag, '%', parser->width));
     if (parser->specifier == ' ')
         return 0;
     if (parser->specifier == 'd' || parser->specifier == 'i')

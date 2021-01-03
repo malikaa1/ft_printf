@@ -22,6 +22,7 @@ typedef struct format_parser
 #define INIT_PARSER(P) format_parser P = { .flag = ' ', .precision = -1, .specifier = ' ', .width = -1, .is_dynamic_precision = 0, .is_dynamic_wdith = 0};
 
 int ft_printf(char *args, ...);
+int ft_print_percent(char flag, char c, int width);
 void parse_flags(int *i, char *str, format_parser *parser);
 void parse_width(int *i, char *str, format_parser *parser);
 void parse_precision(int *i, char *str, format_parser *parser);

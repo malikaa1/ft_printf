@@ -6,7 +6,7 @@
 /*   By: mrahmani <mrahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 13:43:08 by mrahmani          #+#    #+#             */
-/*   Updated: 2020/12/27 13:56:15 by mrahmani         ###   ########.fr       */
+/*   Updated: 2021/01/03 20:04:44 by mrahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,29 @@ int	ft_print_c_speci(char flag, char c, int width)
 		i--;
 	}
 	if (flag == ' ' && width != 0)
+		count += write_char(c);
+	return (count);
+}
+int ft_print_percent(char flag, char c, int width)
+{
+	int i;
+	int count;
+	char output_char;
+
+	if (flag == ' ' || flag == '-')
+		output_char = ' ';
+	if (flag == '0')
+		output_char = '0';
+	count = 0;
+	i = width - 1;
+	if (flag == '-' || (flag == ' ' && width == 0))
+		count += write_char(c);
+	while (i > 0)
+	{
+		count += write_char(output_char);
+		i--;
+	}
+	if ((flag == ' ' && width != 0) || (flag == '0' && width != 0))
 		count += write_char(c);
 	return (count);
 }
