@@ -5,8 +5,8 @@ int write_str(char *str, int precision)
     int i;
 
     i = 0;
-    if (ft_strcmp(str, "(null)") == 0 && precision < 6 && precision != -1)
-        return 0;
+    //if (ft_strcmp(str, "(null)") == 0 && precision < 6 && precision != -1)
+        //return 0;
     precision = precision == -1 || precision > ft_strlen(str) ? ft_strlen(str) : precision;
     while (str[i] != '\0' && i < precision)
     {
@@ -16,19 +16,19 @@ int write_str(char *str, int precision)
     return (i);
 }
 
-int ft_isnull(int precision, int width)
-{
-    int size;
+//int ft_isnull(int precision, int width)
+//{
+//    int size;
 
-    size = 0;
-    if (precision == -1 || (precision >= 6) || (precision == width && width >= 6))
-        size = width - 6;
-    else if (precision > width && precision > 0 && width < 6 && precision < 6)
-        size = width;
-    else if (precision == 0 || (precision > 0 && precision < width) || width == precision)
-        size = width;
-    return (size);
-}
+ //   size = 0;
+  // if (precision == -1 || (precision >= 6) || (precision == width && width >= 6))
+    //    size = width - 6;
+   // else if (precision > width && precision > 0 && width < 6 && precision < 6)
+     //   size = width;
+   // else if (precision == 0 || (precision > 0 && precision < width) || width == precision)
+     //   size = width;
+    //return (size);
+//}
 
 int write_flags(char c, char *str, int width, int precision)
 {
@@ -38,8 +38,8 @@ int write_flags(char c, char *str, int width, int precision)
 
     if (width == -1)
         return 0;
-    if (ft_strcmp(str, "(null)") == 0)
-        size = ft_isnull(precision, width);
+ //   if (ft_strcmp(str, "(null)") == 0)
+   //     size = ft_isnull(precision, width);
     else
     {
         length = ft_strlen(str);
@@ -76,7 +76,7 @@ int output_s_flags(format_parser *parser, char *str, int precision, int width)
     }
     else if (parser->flag == '0')
     {
-        count += write_flags(' ', str, width, precision);
+        count += write_flags('0', str, width, precision);
         count += write_str(str, precision);
     }
     else if (parser->flag == ' ')

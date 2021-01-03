@@ -67,7 +67,7 @@ int output_p_specifier(va_list *parms_arry, format_parser *parser)
 	else
 		precision = parser->precision;
 	if (ptr == 0)
-		return (write_string("(nil)"));
+		return (write_string("0x0"));
 	else
 		return (output_pointer_flag(ptr, parser->width, precision, parser->flag));
 }
