@@ -52,9 +52,11 @@ int output_pointer_flag(long long int ptr, int width, int precision, char flag)
 	int count;
 
 	count = 0;
+	if (precision == -1)
+		precision = 0;
 	length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
 	if (width > length)
-		width = width - precision - length;
+		width = width - length - 2;
 	else
 		width = 0;
 	if (flag == ' ' || flag == '0')
