@@ -1,0 +1,180 @@
+WARNING: The return values reported here may be bugged on some systems.
+          See https://github.com/gavinfielder/pft/issues/11
+          Run in non-fork mode (-X) to ensure accurate return value
+          reporting, set IGNORE_RETURN_VALUE=1 in options-config.ini,
+          or run test_pipes.sh to see if your system has this bug.
+          This bug does not affect the pass/fail result of a test, nor
+          the function output--only the reported return value.
+
+
+Test   7 (pct_5w) : FAILED.
+    First line of code: {return test("%5%");}
+      expected return value : 1
+      your return value     : 5
+      expected output : "%"
+      your output     : "    %"
+      expected (nonprintable as hex) : "%"
+      actual   (nonprintable as hex) : "    %"
+
+Test   8 (pct_5wlj) : FAILED.
+    First line of code: {return test("%-5%");}
+      expected return value : 1
+      your return value     : 5
+      expected output : "%"
+      your output     : "%    "
+      expected (nonprintable as hex) : "%"
+      actual   (nonprintable as hex) : "%    "
+
+Test   9 (pct_5wzp) : FAILED.
+    First line of code: {return test("%05%");}
+      expected return value : 1
+      your return value     : 5
+      expected output : "%"
+      your output     : "0000%"
+      expected (nonprintable as hex) : "%"
+      actual   (nonprintable as hex) : "0000%"
+
+Test  10 (pct_5wljzp) : FAILED.
+    First line of code: {return test("%-05%");}
+      expected return value : 1
+      your return value     : 5
+      expected output : "%"
+      your output     : "%    "
+      expected (nonprintable as hex) : "%"
+      actual   (nonprintable as hex) : "%    "
+
+Test  79 (s_prec_03_no_width_s_null) : FAILED.
+    First line of code: {return test("%.03s", NULL);}
+      expected return value : 0
+      your return value     : 3
+      expected output : ""
+      your output     : "(nu"
+      expected (nonprintable as hex) : ""
+      actual   (nonprintable as hex) : "(nu"
+
+Test 101 (s_prec_1_width_3_s_null) : FAILED.
+    First line of code: {return test("%3.1s", NULL);}
+      expected return value : 3
+      your return value     : 3
+      expected output : "   "
+      your output     : "  ("
+      expected (nonprintable as hex) : "   "
+      actual   (nonprintable as hex) : "  ("
+
+Test 102 (s_prec_1_width_9_s_null) : FAILED.
+    First line of code: {return test("%9.1s", NULL);}
+      expected return value : 9
+      your return value     : 9
+      expected output : "         "
+      your output     : "        ("
+      expected (nonprintable as hex) : "         "
+      actual   (nonprintable as hex) : "        ("
+
+Test 105 (s_prec_1_lj_width_3_s_null) : FAILED.
+    First line of code: {return test("%-3.1s", NULL);}
+      expected return value : 3
+      your return value     : 3
+      expected output : "   "
+      your output     : "(  "
+      expected (nonprintable as hex) : "   "
+      actual   (nonprintable as hex) : "(  "
+
+Test 106 (s_prec_1_lj_width_9_s_null) : FAILED.
+    First line of code: {return test("%-9.1s", NULL);}
+      expected return value : 9
+      your return value     : 9
+      expected output : "         "
+      your output     : "(        "
+      expected (nonprintable as hex) : "         "
+      actual   (nonprintable as hex) : "(        "
+
+Test 130 (s_undefbehav_0_width_9) : FAILED.
+    First line of code: {return test("%09s", s_hidden);}
+      expected return value : 9
+      your return value     : 9
+      expected output : "   hi low"
+      your output     : "000hi low"
+      expected (nonprintable as hex) : "   hi low"
+      actual   (nonprintable as hex) : "000hi low"
+
+Test 426 (p_null) : FAILED.
+    First line of code: {return test("%p", NULL);}
+      expected return value : 5
+      your return value     : 3
+      expected output : "(nil)"
+      your output     : "0x0"
+      expected (nonprintable as hex) : "(nil)"
+      actual   (nonprintable as hex) : "0x0"
+
+Test 427 (p_null_width_fit) : FAILED.
+    First line of code: {return test("%5p", NULL);}
+      expected return value : 5
+      your return value     : 5
+      expected output : "(nil)"
+      your output     : "  0x0"
+      expected (nonprintable as hex) : "(nil)"
+      actual   (nonprintable as hex) : "  0x0"
+
+Test 428 (p_null_width_nofit) : FAILED.
+    First line of code: {return test("%2p", NULL);}
+      expected return value : 5
+      your return value     : 3
+      expected output : "(nil)"
+      your output     : "0x0"
+      expected (nonprintable as hex) : "(nil)"
+      actual   (nonprintable as hex) : "0x0"
+
+Test 429 (p_void) : FAILED.
+    First line of code: {return test("%.p", NULL);}
+      expected return value : 5
+      your return value     : 2
+      expected output : "(nil)"
+      your output     : "0x"
+      expected (nonprintable as hex) : "(nil)"
+      actual   (nonprintable as hex) : "0x"
+
+Test 430 (p_void_width_fit) : FAILED.
+    First line of code: {return test("%5.p", NULL);}
+      expected return value : 5
+      your return value     : 5
+      expected output : "(nil)"
+      your output     : "   0x"
+      expected (nonprintable as hex) : "(nil)"
+      actual   (nonprintable as hex) : "   0x"
+
+Test 431 (p_void_width_nofit) : FAILED.
+    First line of code: {return test("%2.p", NULL);}
+      expected return value : 5
+      your return value     : 2
+      expected output : "(nil)"
+      your output     : "0x"
+      expected (nonprintable as hex) : "(nil)"
+      actual   (nonprintable as hex) : "0x"
+
+Test 434 (p_ftfc_zero_prec5_undefbehav) : FAILED.
+    First line of code: {return test("%.5p", 0);}
+      expected return value : 5
+      your return value     : 7
+      expected output : "(nil)"
+      your output     : "0x00000"
+      expected (nonprintable as hex) : "(nil)"
+      actual   (nonprintable as hex) : "0x00000"
+
+Test 435 (p_ftfc_zero_prec0_undefbehav) : FAILED.
+    First line of code: {return test("%.0p", 0);}
+      expected return value : 5
+      your return value     : 2
+      expected output : "(nil)"
+      your output     : "0x"
+      expected (nonprintable as hex) : "(nil)"
+      actual   (nonprintable as hex) : "0x"
+
+Test 436 (p_ftfc_5w_throwswarning) : FAILED.
+    First line of code: {return test("%5p", 0);}
+      expected return value : 5
+      your return value     : 5
+      expected output : "(nil)"
+      your output     : "  0x0"
+      expected (nonprintable as hex) : "(nil)"
+      actual   (nonprintable as hex) : "  0x0"
+

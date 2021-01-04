@@ -82,9 +82,10 @@ int output_pointer_flag(long long int ptr, int width, int precision, char flag)
 int output_p_specifier(va_list *parms_arry, format_parser *parser)
 {
 	long long int ptr;
-	int length;
+//	int length;
 	int precision;
 
+	//length = 0;
 	if (parser->is_dynamic_wdith == 1)
 	{
 		parser->width = va_arg(*parms_arry, int);
@@ -95,7 +96,7 @@ int output_p_specifier(va_list *parms_arry, format_parser *parser)
 		}
 	}
 	ptr = va_arg(*parms_arry, long long int);
-	length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
+	//length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
 	precision = parser->precision;
 	if (ptr == 0 && precision == 0)
 		return (null_pointer("0x",parser->width, precision, parser->flag));
