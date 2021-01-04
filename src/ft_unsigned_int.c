@@ -1,4 +1,5 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
+
 int ft_sizeof_flag_u(unsigned int nb, int width, int precision)
 {
     int sizeof_nb;

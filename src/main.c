@@ -1,9 +1,9 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int main()
 {
-    // printf("|%0*.*d |\n", 7, 10, -834190435);
-    // ft_printf("|%0*.*d |\n", 7, 10, -834190435);
+    printf("|%0*.*d |\n", 7, 10, -834190435);
+    ft_printf("|%0*.*d |\n", 7, 10, -834190435);
 
     // printf("%012.1ulsL a%19x%0.*i7WA6ER\n", 0, -2147483647, 10, -922569738);
     // ft_printf("%012.1ulsL a%19x%0.*i7WA6ER\n", 0, -2147483647, 10, -922569738);

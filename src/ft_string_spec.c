@@ -1,12 +1,10 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int write_str(char *str, int precision)
 {
     int i;
 
     i = 0;
-    //if (ft_strcmp(str, "(null)") == 0 && precision < 6 && precision != -1)
-        //return 0;
     precision = precision == -1 || precision > ft_strlen(str) ? ft_strlen(str) : precision;
     while (str[i] != '\0' && i < precision)
     {
@@ -15,20 +13,6 @@ int write_str(char *str, int precision)
     }
     return (i);
 }
-
-//int ft_isnull(int precision, int width)
-//{
-//    int size;
-
- //   size = 0;
-  // if (precision == -1 || (precision >= 6) || (precision == width && width >= 6))
-    //    size = width - 6;
-   // else if (precision > width && precision > 0 && width < 6 && precision < 6)
-     //   size = width;
-   // else if (precision == 0 || (precision > 0 && precision < width) || width == precision)
-     //   size = width;
-    //return (size);
-//}
 
 int write_flags(char c, char *str, int width, int precision)
 {

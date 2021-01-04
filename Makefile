@@ -2,9 +2,9 @@ NAME = libftprintf.a
 
 CC = gcc
 
-RM = rm -f
+RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS =  -c -Wall -Wextra -Werror
 
 SRCS = src/ft_printf.c\
 		src/ft_char_spec.c\
@@ -20,7 +20,7 @@ SRCS = src/ft_printf.c\
 
 OBJS = ${SRCS:.c=.o}
 
-# INCLUDES = includes/ft_printf.h
+INCLUDES = -I./includes
 
 .c.o: ${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
@@ -29,7 +29,7 @@ OBJS = ${SRCS:.c=.o}
 $(NAME): $(OBJS)
 		ar rcs $(NAME) $(OBJS)
 
-all:${NAME}
+all:$(NAME)
 
 
 

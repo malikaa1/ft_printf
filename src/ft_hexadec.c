@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int write_str_x(char *str, int precision)
 {
