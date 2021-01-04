@@ -8,7 +8,7 @@ CFLAGS =  -c -Wall -Wextra -Werror
 
 SRCS = src/ft_printf.c\
 		src/ft_char_spec.c\
-		src/ft_pointer_spec.c\
+		src/ft_pointer.c\
 		src/libft1.c\
 		src/libft2.c\
 		src/libft3.c\
@@ -16,7 +16,7 @@ SRCS = src/ft_printf.c\
 		src/ft_string_spec.c\
 		src/ft_unsigned_int.c\
 		src/ft_signed_int.c\
-		src/ft_parser.c
+		src/ft_parser1.c
 
 OBJS = ${SRCS:.c=.o}
 
