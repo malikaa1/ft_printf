@@ -45,3 +45,20 @@ int is_valid_specifier(char c)
 {
     return (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == 'c' || c == 's' || c == 'p' ? 1 : 0);
 }
+
+char	*ft_strdup(const char *src)
+{
+	char	*ptr;
+	int		i;
+
+	i = 0;
+	if (!(ptr = malloc(ft_strlen(src) + 1)))
+		return (NULL);
+	while (src[i])
+	{
+		ptr[i] = src[i];
+		i++;
+	}				
+	ptr[i] = 0;
+	return (ptr);
+}

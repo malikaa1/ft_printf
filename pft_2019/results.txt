@@ -7,66 +7,51 @@ WARNING: The return values reported here may be bugged on some systems.
           the function output--only the reported return value.
 
 
-Test 427 (p_null_width_fit) : FAILED.
-    First line of code: {return test("%5p", NULL);}
-      expected return value : 5
-      your return value     : 3
-      expected output : "  0x0"
-      your output     : "0x0"
-      expected (nonprintable as hex) : "  0x0"
-      actual   (nonprintable as hex) : "0x0"
+Test 438 (p_width_fit) : FAILED.
+    First line of code: {return test("%70p%70p%70p%70p%70p%70p%70p%70p%70p%70p%70p%70p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);      expected return value : 1012
+      your return value     : 1051
+      expected output : "                                                           0x10b69b1b8                                                           0x10b69b1b9          "
+      your output     : "                                                              0x10b69b1b8                                                              0x10b69b1b9    "
+      expected (nonprintable as hex) : "                                                           0x10b69b1b8                                                           0x10b69b1b9          "
+      actual   (nonprintable as hex) : "                                                              0x10b69b1b8                                                              0x10b69b1b9    "
 
-Test 429 (p_void) : FAILED.
-    First line of code: {return test("%.p", NULL);}
-      expected return value : 2
-      your return value     : 3
-      expected output : "0x"
-      your output     : "0x0"
-      expected (nonprintable as hex) : "0x"
-      actual   (nonprintable as hex) : "0x0"
+Test 440 (p_width_16) : FAILED.
+    First line of code: {return test("%16p%16p%16p%16p%16p%16p%16p%16p%16p%16p%16p%16p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);      expected return value : 222
+      your return value     : 272
+      expected output : "     0x10b69b1b8     0x10b69b1b9     0x10b69b1ba     0x10b69b1bc     0x10b69b1c0     0x10b69b1c4     0x10b69b1c8     0x10b69b1d0     0x10b69b1d8     0"
+      your output     : "        0x10b69b1b8        0x10b69b1b9        0x10b69b1ba        0x10b69b1bc        0x10b69b1c0        0x10b69b1c4        0x10b69b1c8        0x10b69b1"
+      expected (nonprintable as hex) : "     0x10b69b1b8     0x10b69b1b9     0x10b69b1ba     0x10b69b1bc     0x10b69b1c0     0x10b69b1c4     0x10b69b1c8     0x10b69b1d0     0x10b69b1d8     0"
+      actual   (nonprintable as hex) : "        0x10b69b1b8        0x10b69b1b9        0x10b69b1ba        0x10b69b1bc        0x10b69b1c0        0x10b69b1c4        0x10b69b1c8        0x10b69b1"
 
-Test 430 (p_void_width_fit) : FAILED.
-    First line of code: {return test("%5.p", NULL);}
-      expected return value : 5
-      your return value     : 3
-      expected output : "   0x"
-      your output     : "0x0"
-      expected (nonprintable as hex) : "   0x"
-      actual   (nonprintable as hex) : "0x0"
+Test 442 (p_width_32) : FAILED.
+    First line of code: {return test("%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);      expected return value : 455
+      your return value     : 506
+      expected output : "                     0x10b69b1b8                     0x10b69b1b9                     0x10b69b1ba                     0x10b69b1bc                     0"
+      your output     : "                        0x10b69b1b8                        0x10b69b1b9                        0x10b69b1ba                        0x10b69b1bc          "
+      expected (nonprintable as hex) : "                     0x10b69b1b8                     0x10b69b1b9                     0x10b69b1ba                     0x10b69b1bc                     0"
+      actual   (nonprintable as hex) : "                        0x10b69b1b8                        0x10b69b1b9                        0x10b69b1ba                        0x10b69b1bc          "
 
-Test 431 (p_void_width_nofit) : FAILED.
-    First line of code: {return test("%2.p", NULL);}
-      expected return value : 2
-      your return value     : 3
-      expected output : "0x"
-      your output     : "0x0"
-      expected (nonprintable as hex) : "0x"
-      actual   (nonprintable as hex) : "0x0"
+Test 443 (p_width_fit_lj) : FAILED.
+    First line of code: {return test("%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10      expected return value : 1012
+      your return value     : 1051
+      expected output : "0x10b69b1b8                                                           0x10b69b1b9                                                           0x10b69b1b"
+      your output     : "0x10b69b1b8                                                              0x10b69b1b9                                                              0x10"
+      expected (nonprintable as hex) : "0x10b69b1b8                                                           0x10b69b1b9                                                           0x10b69b1b"
+      actual   (nonprintable as hex) : "0x10b69b1b8                                                              0x10b69b1b9                                                              0x10"
 
-Test 434 (p_ftfc_zero_prec5_undefbehav) : FAILED.
-    First line of code: {return test("%.5p", 0);}
-      expected return value : 7
-      your return value     : 3
-      expected output : "0x00000"
-      your output     : "0x0"
-      expected (nonprintable as hex) : "0x00000"
-      actual   (nonprintable as hex) : "0x0"
+Test 445 (p_width_16_lj) : FAILED.
+    First line of code: {return test("%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p%-16p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10      expected return value : 222
+      your return value     : 272
+      expected output : "0x10b69b1b8     0x10b69b1b9     0x10b69b1ba     0x10b69b1bc     0x10b69b1c0     0x10b69b1c4     0x10b69b1c8     0x10b69b1d0     0x10b69b1d8     0x10b6"
+      your output     : "0x10b69b1b8        0x10b69b1b9        0x10b69b1ba        0x10b69b1bc        0x10b69b1c0        0x10b69b1c4        0x10b69b1c8        0x10b69b1d0      "
+      expected (nonprintable as hex) : "0x10b69b1b8     0x10b69b1b9     0x10b69b1ba     0x10b69b1bc     0x10b69b1c0     0x10b69b1c4     0x10b69b1c8     0x10b69b1d0     0x10b69b1d8     0x10b6"
+      actual   (nonprintable as hex) : "0x10b69b1b8        0x10b69b1b9        0x10b69b1ba        0x10b69b1bc        0x10b69b1c0        0x10b69b1c4        0x10b69b1c8        0x10b69b1d0      "
 
-Test 435 (p_ftfc_zero_prec0_undefbehav) : FAILED.
-    First line of code: {return test("%.0p", 0);}
-      expected return value : 2
-      your return value     : 3
-      expected output : "0x"
-      your output     : "0x0"
-      expected (nonprintable as hex) : "0x"
-      actual   (nonprintable as hex) : "0x0"
-
-Test 436 (p_ftfc_5w_throwswarning) : FAILED.
-    First line of code: {return test("%5p", 0);}
-      expected return value : 5
-      your return value     : 3
-      expected output : "  0x0"
-      your output     : "0x0"
-      expected (nonprintable as hex) : "  0x0"
-      actual   (nonprintable as hex) : "0x0"
+Test 447 (p_width_32_lj) : FAILED.
+    First line of code: {return test("%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10      expected return value : 455
+      your return value     : 506
+      expected output : "0x10b69b1b8                     0x10b69b1b9                     0x10b69b1ba                     0x10b69b1bc                     0x10b69b1c0           "
+      your output     : "0x10b69b1b8                        0x10b69b1b9                        0x10b69b1ba                        0x10b69b1bc                        0x10b69b1c"
+      expected (nonprintable as hex) : "0x10b69b1b8                     0x10b69b1b9                     0x10b69b1ba                     0x10b69b1bc                     0x10b69b1c0           "
+      actual   (nonprintable as hex) : "0x10b69b1b8                        0x10b69b1b9                        0x10b69b1ba                        0x10b69b1bc                        0x10b69b1c"
 
