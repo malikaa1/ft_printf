@@ -22,8 +22,6 @@ int write_flags(char c, char *str, int width, int precision)
 
     if (width == -1)
         return 0;
- //   if (ft_strcmp(str, "(null)") == 0)
-   //     size = ft_isnull(precision, width);
     else
     {
         length = ft_strlen(str);
