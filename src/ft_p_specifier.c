@@ -6,7 +6,7 @@
 /*   By: mrahmani <mrahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:08:18 by mrahmani          #+#    #+#             */
-/*   Updated: 2021/01/05 12:25:09 by mrahmani         ###   ########.fr       */
+/*   Updated: 2021/01/05 20:53:37 by mrahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,15 @@ int		null_pointer(char *ptr, int width, int precision, char flag)
 int		ft_count_ch(long long int ptr, int width, int precision, char flag)
 {
 	int		count;
-	int		length;
 	char	*str;
 
 	count = 0;
 	str = ft_itoa(ptr, "0123456789abcdef");
-	length = ft_strlen(str);
 	if (flag == ' ' || flag == '0')
 	{
 		count += write_flag_p(width);
 		count += write_string("0x");
-		while ((precision - length) > 0)
+		while ((precision - ft_strlen(str)) > 0)
 		{
 			count += write_char('0');
 			precision--;
