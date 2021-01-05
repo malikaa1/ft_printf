@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrahmani <mrahmani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/05 11:58:55 by mrahmani          #+#    #+#             */
+/*   Updated: 2021/01/05 12:05:36 by mrahmani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
@@ -98,7 +109,7 @@ void	parse_specifier(int *i, char *str, format_parser *parser)
 	{
 		parser->specifier = str[*i];
 		*i = *i + 1;
-	}	
+	}
 	else if (is_valid_specifier(str[*i]) == 0)
 	{
 		*i = *i + 1;

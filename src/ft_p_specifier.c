@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_p_specifier.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrahmani <mrahmani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/05 12:08:18 by mrahmani          #+#    #+#             */
+/*   Updated: 2021/01/05 12:25:09 by mrahmani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
-int write_flag_p(int size)
+int		write_flag_p(int size)
 {
-	int count;
+	int		count;
 
 	count = 0;
 	while (size > 0)
@@ -14,9 +26,9 @@ int write_flag_p(int size)
 	return (count);
 }
 
-int null_pointer(char *ptr, int width, int precision, char flag)
+int		null_pointer(char *ptr, int width, int precision, char flag)
 {
-	int count;
+	int		count;
 
 	count = 0;
 	if (width > ft_strlen(ptr))
@@ -35,19 +47,16 @@ int null_pointer(char *ptr, int width, int precision, char flag)
 	}
 	if (precision > 3)
 	{
-		while ((precision - 1) > 0)
-		{
+		while ((precision--) - 1 > 0)
 			count += write_char('0');
-			precision--;
-		}
 	}
 	return (count);
 }
 
-int ft_count_ch(long long int ptr, int width, int precision, char flag)
+int		ft_count_ch(long long int ptr, int width, int precision, char flag)
 {
-	int count;
-	int length;
+	int		count;
+	int		length;
 
 	count = 0;
 	length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
@@ -71,9 +80,9 @@ int ft_count_ch(long long int ptr, int width, int precision, char flag)
 	return (count);
 }
 
-int ft_output(long long int ptr, int width, int precision, char flag)
+int		ft_output(long long int ptr, int width, int precision, char flag)
 {
-	int length;
+	int		length;
 
 	length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
 	if (precision == -1)
@@ -85,10 +94,10 @@ int ft_output(long long int ptr, int width, int precision, char flag)
 	return (ft_count_ch(ptr, width, precision, flag));
 }
 
-int output_p_specifier(va_list *parms_arry, format_parser *parser)
+int		output_p_specifier(va_list *parms_arry, format_parser *parser)
 {
-	long long int ptr;
-	int precision;
+	long long int	ptr;
+	int				precision;
 
 	if (parser->is_dynamic_wdith == 1)
 	{

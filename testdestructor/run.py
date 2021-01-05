@@ -3,10 +3,10 @@ import subprocess
 import inputs
 import random
 
-N = 100
+N = 10000
 M = 2
-# COMP = "gcc -Wall -Wextra -Werror -g3 -fsanitize=address "
-COMP = "gcc "
+COMP = "gcc -Wall -Wextra -Werror -g3 -fsanitize=address "
+#COMP = "gcc "
 
 tests = []
 
