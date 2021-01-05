@@ -43,7 +43,8 @@ int ft_isalpha(int c)
 
 int is_valid_specifier(char c)
 {
-    return (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == 'c' || c == 's' || c == 'p' ? 1 : 0);
+    return (c == 'd' || c == 'i' || c == 'u' || c == 'x' || 
+			c == 'X' || c == 'c' || c == 's' || c == 'p' ? 1 : 0);
 }
 
 char	*ft_strdup(const char *src)

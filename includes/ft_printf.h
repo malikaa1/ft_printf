@@ -40,7 +40,7 @@ int output_x_low_specifier(va_list *parms_arry, format_parser *parser);
 
 int output_int_flag(int nb, int width, int precision, char flag);
 int ft_output(long long int ptr, int width, int precision, char flag);
-int output_s_flags(format_parser *parser, char *str, int precision, int width);
+int output_s(format_parser *parser, char *str, int precision, int width);
 int output_x_flags(format_parser *parser, char *str, int precision, int width);
 
 int write_nb(int nb, int precision, char flag);

@@ -5,7 +5,9 @@ int write_str(char *str, int precision)
     int i;
 
     i = 0;
-    precision = precision == -1 || precision > ft_strlen(str) ? ft_strlen(str) : precision;
+    if (precision == -1 || precision > ft_strlen(str))
+        precision = ft_strlen(str);
+    //precision = precision == -1 || precision > ft_strlen(str) ? ft_strlen(str) : precision;
     while (str[i] != '\0' && i < precision)
     {
         ft_putchar(str[i]);
@@ -41,7 +43,7 @@ int write_flags(char c, char *str, int width, int precision)
     return (count);
 }
 
-int output_s_flags(format_parser *parser, char *str, int precision, int width)
+int output_s(format_parser *parser, char *str, int precision, int width)
 {
     int count;
 
@@ -86,9 +88,15 @@ int output_s_specifier(va_list *parms_arry, format_parser *parser)
     }
     else
         width = parser->width;
-    precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
+    //precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
+    if (parser->is_dynamic_precision == 1)
+        precision = va_arg(*parms_arry, int);
+    else
+        precision = parser->precision;
     arg = va_arg(*parms_arry, char *);
-    arg = arg == NULL ? "(null)" : arg;
+    if (arg == NULL)
+        arg = "(NULL)";
+   // arg = arg == NULL ? "(null)" : arg;
     precision = precision < -1 ? ft_strlen(arg) : precision;
-    return (output_s_flags(parser, arg, precision, width));
+    return (output_s(parser, arg, precision, width));
 }

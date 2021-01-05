@@ -6,7 +6,7 @@ int ft_sizeof_flag_u(unsigned int nb, int width, int precision)
     int result;
 
     result = 0;
-	sizeof_nb = ft_strlen(ft_itoa(nb, "0123456789"));
+    sizeof_nb = ft_strlen(ft_itoa(nb, "0123456789"));
     if (width >= sizeof_nb && precision < width)
     {
         if (precision == 0 || precision == -1 || precision < sizeof_nb)
@@ -92,7 +92,10 @@ int output_u_specifier(va_list *parms_arry, format_parser *parser)
     }
     else
         width = parser->width;
-    precision = parser->is_dynamic_precision == 1 ? va_arg(*parms_arry, int) : parser->precision;
+    if (parser->is_dynamic_precision == 1)
+        precision = va_arg(*parms_arry, int);
+    else
+        precision = parser->precision;
     un_int = va_arg(*parms_arry, unsigned int);
     return (output_u_flag(un_int, width, precision, parser->flag));
 }
