@@ -16,9 +16,12 @@ int		ft_sizeof_flag_u(unsigned int nb, int width, int precision)
 {
 	int		sizeof_nb;
 	int		result;
+	char	*ptr;
 
+	ptr = ft_itoa(nb, "0123456789");
 	result = 0;
-	sizeof_nb = ft_strlen(ft_itoa(nb, "0123456789"));
+	sizeof_nb = ft_strlen(ptr);
+	free(ptr);
 	if (width >= sizeof_nb && precision < width)
 	{
 		if (precision == 0 || precision == -1 || precision < sizeof_nb)
@@ -37,9 +40,12 @@ int		write_nb_u(unsigned int nb, int precision)
 {
 	int		lenght_nb;
 	int		count;
+	char	*ptr;
 
 	count = 0;
-	lenght_nb = ft_strlen(ft_itoa(nb, "0123456789"));
+	ptr = ft_itoa(nb, "0123456789");
+	lenght_nb = ft_strlen(ptr);
+	free(ptr);
 	if (nb == 0 && precision == 0)
 		return (0);
 	while (precision > lenght_nb)

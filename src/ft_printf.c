@@ -27,8 +27,11 @@ int		write_char(char c)
 int		write_number(long long nb)
 {
 	int		length;
+	char	*str;
 
-	length = ft_strlen(ft_itoa(nb, "0123456789"));
+	str = ft_itoa(nb, "0123456789");
+	length = ft_strlen(str);
+	free(str);
 	ft_putnbr(nb);
 	return (length);
 }

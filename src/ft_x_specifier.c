@@ -84,6 +84,7 @@ int		output_x_flags(format_parser *parser, char *s, int preci, int width)
 		count += write_flag_x(' ', s, width, preci);
 		count += write_str_x(s, preci);
 	}
+	free(s);
 	return (count);
 }
 

@@ -57,9 +57,11 @@ int		ft_count_ch(long long int ptr, int width, int precision, char flag)
 {
 	int		count;
 	int		length;
+	char	*str;
 
 	count = 0;
-	length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
+	str = ft_itoa(ptr, "0123456789abcdef");
+	length = ft_strlen(str);
 	if (flag == ' ' || flag == '0')
 	{
 		count += write_flag_p(width);
@@ -69,22 +71,26 @@ int		ft_count_ch(long long int ptr, int width, int precision, char flag)
 			count += write_char('0');
 			precision--;
 		}
-		count += write_string(ft_itoa(ptr, "0123456789abcdef"));
+		count += write_string(str);
 	}
 	if (flag == '-')
 	{
 		count += write_string("0x");
-		count += write_string(ft_itoa(ptr, "0123456789abcdef"));
+		count += write_string(str);
 		count += write_flag_p(width);
 	}
+	free(str);
 	return (count);
 }
 
 int		ft_output(long long int ptr, int width, int precision, char flag)
 {
 	int		length;
+	char	*str;
 
-	length = ft_strlen(ft_itoa(ptr, "0123456789abcdef"));
+	str = ft_itoa(ptr, "0123456789abcdef");
+	length = ft_strlen(str);
+	free(str);
 	if (precision == -1)
 		precision = 0;
 	if (width > length)
