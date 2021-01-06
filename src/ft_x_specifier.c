@@ -64,7 +64,7 @@ int		write_flag_x(char flag, char *str, int width, int precision)
 	return (count);
 }
 
-int		output_x_flags(format_parser *parser, char *s, int preci, int width)
+int		output_x_flags(t_format *parser, char *s, int preci, int width)
 {
 	int		count;
 
@@ -88,7 +88,7 @@ int		output_x_flags(format_parser *parser, char *s, int preci, int width)
 	return (count);
 }
 
-int		output_x_low_specifier(va_list *parms_arry, format_parser *parser)
+int		output_x_low_specifier(va_list *parms_arry, t_format *parser)
 {
 	char			*arg_x;
 	int				precision;
@@ -117,7 +117,7 @@ int		output_x_low_specifier(va_list *parms_arry, format_parser *parser)
 	return (output_x_flags(parser, arg_x, precision, width));
 }
 
-int		output_x_upp_specifier(va_list *parms_arry, format_parser *parser)
+int		output_x_upp_specifier(va_list *parms_arry, t_format *parser)
 {
 	char			*arg_x;
 	int				precision;

@@ -106,7 +106,7 @@ int		output_int_flag(int nb, int width, int precision, char flag)
 	return (count);
 }
 
-int		output_d_specifier(va_list *parms_arry, format_parser *parser)
+int		output_d_specifier(va_list *parms_arry, t_format *parser)
 {
 	int		d;
 	int		width;

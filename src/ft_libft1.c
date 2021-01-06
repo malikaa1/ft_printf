@@ -63,3 +63,15 @@ void	ft_putnbr(long long nb)
 	else
 		ft_putchar(nb + '0');
 }
+
+t_format	init_parser()
+{
+	t_format s;
+	s.flag = ' '; 
+	s.precision = -1; 
+	s.specifier = ' '; 
+	s.width = -1; 
+	s.is_dynamic_precision = 0; 
+	s.is_dynamic_wdith = 0;
+	return (s);
+}

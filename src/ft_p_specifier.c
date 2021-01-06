@@ -98,7 +98,7 @@ int		ft_output(long long int ptr, int width, int precision, char flag)
 	return (ft_count_ch(ptr, width, precision, flag));
 }
 
-int		output_p_specifier(va_list *parms_arry, format_parser *parser)
+int		output_p_specifier(va_list *parms_arry, t_format *parser)
 {
 	long long int	ptr;
 	int				precision;

@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void	parse_flags(int *i, char *str, format_parser *parser)
+void	parse_flags(int *i, char *str, t_format *parser)
 {
 	if (str[*i] == '\0')
 		return ;
@@ -33,7 +33,7 @@ void	parse_flags(int *i, char *str, format_parser *parser)
 	}
 }
 
-void	parse_width(int *i, char *str, format_parser *parser)
+void	parse_width(int *i, char *str, t_format *parser)
 {
 	int		count;
 	char	*width;
@@ -59,7 +59,7 @@ void	parse_width(int *i, char *str, format_parser *parser)
 	free(width);
 }
 
-void	ft_check_str(char *str, int *i, format_parser *parser)
+void	ft_check_str(char *str, int *i, t_format *parser)
 {
 	int		count;
 	char	*result;
@@ -85,7 +85,7 @@ void	ft_check_str(char *str, int *i, format_parser *parser)
 	}
 }
 
-void	parse_precision(int *i, char *str, format_parser *parser)
+void	parse_precision(int *i, char *str, t_format *parser)
 {
 	if (str[*i] == '\0')
 		return ;
@@ -101,7 +101,7 @@ void	parse_precision(int *i, char *str, format_parser *parser)
 		ft_check_str(str, i, parser);
 }
 
-void	parse_specifier(int *i, char *str, format_parser *parser)
+void	parse_specifier(int *i, char *str, t_format *parser)
 {
 	if (str[*i] == '\0')
 		return ;

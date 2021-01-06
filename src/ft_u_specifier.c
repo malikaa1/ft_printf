@@ -92,7 +92,7 @@ int		output_u_flag(unsigned int nb, int width, int precision, char flag)
 	return (count);
 }
 
-int		output_u_specifier(va_list *parms_arry, format_parser *parser)
+int		output_u_specifier(va_list *parms_arry, t_format *parser)
 {
 	unsigned int	un_int;
 	int				precision;

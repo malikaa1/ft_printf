@@ -56,7 +56,7 @@ int		write_flags(char c, char *str, int width, int precision)
 	return (count);
 }
 
-int		output_s(format_parser *parser, char *str, int precision, int width)
+int		output_s(t_format *parser, char *str, int precision, int width)
 {
 	int		count;
 
@@ -84,7 +84,7 @@ int		output_s(format_parser *parser, char *str, int precision, int width)
 	return (count);
 }
 
-int		output_s_specifier(va_list *parms_arry, format_parser *parser)
+int		output_s_specifier(va_list *parms_arry, t_format *parser)
 {
 	char	*arg;
 	int		precision;

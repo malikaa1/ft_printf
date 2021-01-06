@@ -36,7 +36,7 @@ int		write_number(long long nb)
 	return (length);
 }
 
-int		output(va_list *parms_arry, format_parser *parser)
+int		output(va_list *parms_arry, t_format *parser)
 {
 	if (parser->specifier == '%')
 		return (ft_print_percent(parser->flag, '%', parser->width));
@@ -64,7 +64,8 @@ int		ft_printf(char *args, ...)
 	int		i;
 	int		count;
 	va_list	parms_arry;
-
+	t_format parser;
+	
 	i = 0;
 	count = 0;
 	va_start(parms_arry, args);
@@ -72,7 +73,7 @@ int		ft_printf(char *args, ...)
 	{
 		if (args[i] == '%')
 		{
-			INIT_PARSER(parser);
+			parser = init_parser();
 			i++;
 			parse_flags(&i, args, &parser);
 			parse_width(&i, args, &parser);

@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct	format_parser
+typedef struct	s_format
 {
 	char	specifier;
 	char	flag;
@@ -27,28 +27,28 @@ typedef struct	format_parser
 	int		precision;
 	int		is_dynamic_precision;
 	int		is_dynamic_wdith;
-}	format_parser;
+}	t_format;
 
-# define INIT_PARSER(P) format_parser P = { .flag = ' ', .precision = -1, .specifier = ' ', .width = -1, .is_dynamic_precision = 0, .is_dynamic_wdith = 0};
+
 
 int		ft_printf(char *args, ...);
 int		ft_print_percent(char flag, char c, int width);
-void	parse_flags(int *i, char *str, format_parser *parser);
-void	parse_width(int *i, char *str, format_parser *parser);
-void	parse_precision(int *i, char *str, format_parser *parser);
-void	parse_specifier(int *i, char *str, format_parser *parser);
-int		output(va_list *parms_arry, format_parser *parser);
-int		output_c_specifier(va_list *parms_arry, format_parser *parser);
-int		output_d_specifier(va_list *parms_arry, format_parser *parser);
-int		output_u_specifier(va_list *parms_arry, format_parser *parser);
-int		output_p_specifier(va_list *parms_arry, format_parser *parser);
-int		output_s_specifier(va_list *parms_arry, format_parser *parser);
-int		output_x_upp_specifier(va_list *parms_arry, format_parser *parser);
-int		output_x_low_specifier(va_list *parms_arry, format_parser *parser);
+void	parse_flags(int *i, char *str, t_format *parser);
+void	parse_width(int *i, char *str, t_format *parser);
+void	parse_precision(int *i, char *str, t_format *parser);
+void	parse_specifier(int *i, char *str, t_format *parser);
+int		output(va_list *parms_arry, t_format *parser);
+int		output_c_specifier(va_list *parms_arry, t_format *parser);
+int		output_d_specifier(va_list *parms_arry, t_format *parser);
+int		output_u_specifier(va_list *parms_arry, t_format *parser);
+int		output_p_specifier(va_list *parms_arry, t_format *parser);
+int		output_s_specifier(va_list *parms_arry, t_format *parser);
+int		output_x_upp_specifier(va_list *parms_arry, t_format *parser);
+int		output_x_low_specifier(va_list *parms_arry, t_format *parser);
 int		output_int_flag(int nb, int width, int precision, char flag);
 int		ft_output(long long int ptr, int width, int precision, char flag);
-int		output_s(format_parser *parser, char *str, int precision, int width);
-int		output_x_flags(format_parser *parser, char *str, int pre, int width);
+int		output_s(t_format *parser, char *str, int precision, int width);
+int		output_x_flags(t_format *parser, char *str, int pre, int width);
 int		write_nb(int nb, int precision, char flag);
 int		write_nb_u(unsigned int nb, int precision);
 int		write_str(char *str, int precision);
@@ -70,4 +70,5 @@ int		ft_strcmp(char *s1, char *s2);
 int		write_string(char *str);
 int		write_char(char c);
 int		write_number(long long nb);
+t_format	init_parser();
 #endif

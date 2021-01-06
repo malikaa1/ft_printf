@@ -55,7 +55,7 @@ int		ft_print_percent(char flag, char c, int width)
 	return (count);
 }
 
-int		output_c_specifier(va_list *parms_arry, format_parser *parser)
+int		output_c_specifier(va_list *parms_arry, t_format *parser)
 {
 	char	c;
 	int		width;
