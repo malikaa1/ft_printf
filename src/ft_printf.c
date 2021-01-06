@@ -6,7 +6,7 @@
 /*   By: mrahmani <mrahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:43:33 by mrahmani          #+#    #+#             */
-/*   Updated: 2021/01/05 12:58:04 by mrahmani         ###   ########.fr       */
+/*   Updated: 2021/01/06 21:08:34 by mrahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int		output(va_list *parms_arry, t_format *parser)
 
 int		ft_printf(char *args, ...)
 {
-	int		i;
-	int		count;
-	va_list	parms_arry;
-	t_format parser;
-	
+	int			i;
+	int			count;
+	va_list		parms_arry;
+	t_format	parser;
+
 	i = 0;
 	count = 0;
 	va_start(parms_arry, args);

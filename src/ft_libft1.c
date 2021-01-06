@@ -6,13 +6,13 @@
 /*   By: mrahmani <mrahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:21:04 by mrahmani          #+#    #+#             */
-/*   Updated: 2021/01/05 17:26:32 by mrahmani         ###   ########.fr       */
+/*   Updated: 2021/01/06 21:06:50 by mrahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		ft_strlen(const char *str)
+int				ft_strlen(const char *str)
 {
 	const char	*ptr;
 	int			i;
@@ -26,12 +26,12 @@ int		ft_strlen(const char *str)
 	return (i);
 }
 
-void	ft_putchar(char c)
+void			ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *s)
+void			ft_putstr(char *s)
 {
 	int		i;
 
@@ -45,7 +45,7 @@ void	ft_putstr(char *s)
 	}
 }
 
-void	ft_putnbr(long long nb)
+void			ft_putnbr(long long nb)
 {
 	int		i;
 
@@ -64,14 +64,15 @@ void	ft_putnbr(long long nb)
 		ft_putchar(nb + '0');
 }
 
-t_format	init_parser()
+t_format		init_parser(void)
 {
-	t_format s;
-	s.flag = ' '; 
-	s.precision = -1; 
-	s.specifier = ' '; 
-	s.width = -1; 
-	s.is_dynamic_precision = 0; 
+	t_format	s;
+
+	s.flag = ' ';
+	s.precision = -1;
+	s.specifier = ' ';
+	s.width = -1;
+	s.is_dynamic_precision = 0;
 	s.is_dynamic_wdith = 0;
 	return (s);
 }
